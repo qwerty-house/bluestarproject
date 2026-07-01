@@ -1,1079 +1,660 @@
 <!DOCTYPE html>
 <html lang="th" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLUE STAR // Allianz Ayudhya Portal</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts (Anuphan for professional Thai, Outfit for elegant English numerals) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            allianz: {
-              light: '#0053b3',
-              DEFAULT: '#003781',
-              dark: '#002251'
-            }
-          },
-          fontFamily: {
-            sans: ['Anuphan', 'Outfit', 'sans-serif'],
-            display: ['Outfit', 'sans-serif'],
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite',
-            'spin-slow': 'spin 40s linear infinite',
-            'shine-slow': 'shine 4s ease-in-out infinite',
-            'pulse-dot': 'pulseDot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-6px)' },
-            },
-            shine: {
-              '0%': { left: '-100%' },
-              '100%': { left: '200%' },
-            },
-            pulseDot: {
-              '0%, 100%': { transform: 'scale(1)', opacity: '1' },
-              '50%': { transform: 'scale(1.4)', opacity: '0.4' },
-            }
-          }
-        }
-      }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLUE STAR // Allianz Ayudhya App</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        app: {
+          bg: '#F3F5FA',
+          bgdark: '#060B18',
+          card: '#FFFFFF',
+          carddark: '#0F1830',
+          navy: '#0A1B4A',
+          steel: '#C9D3E0'
+        },
+        accent: { DEFAULT: '#2F6FED', light: '#57B6FF', dark: '#1A4FC4' },
+        gold: '#F0B23E'
+      },
+      fontFamily: {
+        sans: ['Anuphan', 'sans-serif'],
+        display: ['Outfit', 'sans-serif']
+      },
+      borderRadius: { '2xl': '20px', '3xl': '26px' }
     }
-  </script>
-  
-  <style>
-    /* Custom Scrollbar for elegant UI */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(100, 116, 139, 0.25);
-      border-radius: 999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 55, 129, 0.4);
-    }
-    
-    /* Elegant iOS Bento Card Styling */
-    .bento-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.02), 0 2px 8px -1px rgba(0, 0, 0, 0.01);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .dark .bento-card {
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.35);
-    }
-
-    /* Spring interaction to indicate clickability and award-winning feeling */
-    .bento-clickable:hover {
-      transform: scale(1.015) translateY(-4px);
-      box-shadow: 0 20px 40px -8px rgba(0, 55, 129, 0.08);
-      border-color: rgba(59, 130, 246, 0.3);
-    }
-    .dark .bento-clickable:hover {
-      transform: scale(1.015) translateY(-4px);
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6);
-      border-color: rgba(59, 130, 246, 0.4);
-    }
-
-    /* Pathway illumination effect mimicking uploaded image (10.jpg) */
-    .glowing-road {
-      background: radial-gradient(circle at 50% 120%, rgba(59, 130, 246, 0.06) 0%, transparent 65%);
-    }
-    .dark .glowing-road {
-      background: radial-gradient(circle at 50% 120%, rgba(59, 130, 246, 0.16) 0%, transparent 65%);
-    }
-
-    /* Success Door Glow */
-    .door-glow {
-      box-shadow: 0 4px 24px -5px rgba(0, 83, 179, 0.15);
-    }
-    .dark .door-glow {
-      box-shadow: 0 4px 30px -2px rgba(59, 130, 246, 0.4);
-    }
-  </style>
+  }
+}
+</script>
+<style>
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:rgba(100,116,139,.3);border-radius:99px}
+body{-webkit-tap-highlight-color:transparent}
+.app-frame{max-width:460px}
+.app-card{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.06);
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.dark .app-card{
+  background:#101B36;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:none;
+}
+.tap:active{transform:scale(.97)}
+.tap{transition:transform .15s ease}
+.icon-badge{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tabbar-item.active .tab-icon{color:#2F6FED}
+.tabbar-item.active .tab-dot{opacity:1}
+.tabbar-item .tab-dot{opacity:0;transition:opacity .2s}
+.member-card{
+  background:linear-gradient(155deg,#0A1B4A 0%,#122a63 45%,#050B1F 100%);
+  position:relative;overflow:hidden;
+}
+.member-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 85% -10%, rgba(87,182,255,.35), transparent 55%);
+  pointer-events:none;
+}
+</style>
 </head>
-<body class="bg-slate-50 dark:bg-[#040814] text-slate-800 dark:text-slate-100 font-sans relative overflow-x-hidden min-h-screen transition-colors duration-500 glowing-road">
+<body class="bg-app-bg dark:bg-app-bgdark text-slate-800 dark:text-slate-100 font-sans min-h-screen transition-colors duration-300">
 
-  <!-- Interactive Subtle Constellation Canvas -->
-  <canvas id="constellation" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-30 dark:opacity-60"></canvas>
+<canvas id="constellation" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-20 dark:opacity-40"></canvas>
 
-  <!-- Premium Ambience Blobs -->
-  <div id="blob-1" class="fixed -top-40 -left-40 w-[450px] h-[450px] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] pointer-events-none transition-all duration-1000"></div>
-  <div id="blob-2" class="fixed top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-indigo-500/5 dark:bg-indigo-600/10 blur-[150px] pointer-events-none transition-all duration-1000"></div>
+<div class="app-frame mx-auto min-h-screen relative flex flex-col pb-28">
 
-  <!-- Main Container -->
-  <main class="max-w-2xl w-full mx-auto px-4 py-8 relative z-10 flex flex-col items-center gap-6 min-h-screen">
-    
-    <!-- Top Nav Utility Bar -->
-    <header class="w-full flex justify-between items-center px-1">
-      <!-- Verified Partner Tagline -->
-      <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bento-card text-xs font-bold tracking-wide text-blue-800 dark:text-blue-400 select-none border border-blue-500/10 shadow-sm">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600 dark:bg-blue-400"></span>
-        </span>
-        <span data-th="พันธมิตรความสำเร็จสูงสุด" data-en="YOUR PATHWAY TO OPPORTUNITY">พันธมิตรความสำเร็จสูงสุด</span>
+  <!-- APP BAR -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-app-bg/85 dark:bg-app-bgdark/85 border-b border-slate-200/60 dark:border-white/5 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-app-navy dark:bg-white/10 flex items-center justify-center">
+        <span class="font-display font-extrabold text-white text-[13px] tracking-tight">BS</span>
       </div>
-      
-      <!-- Settings (Language, Dark/Light Mode, Share) -->
-      <div class="flex items-center gap-1.5">
-        <!-- Toggle Light / Dark Mode -->
-        <button id="dark-mode-toggle" class="p-2.5 rounded-xl bento-card text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white transition-all hover:scale-105 active:scale-95 shadow-sm" title="Toggle Appearance">
-          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
-          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
-        </button>
+      <div class="leading-tight">
+        <p class="font-display font-bold text-sm text-slate-900 dark:text-white -mb-0.5">BLUE STAR</p>
+        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 tracking-wide" data-th="Allianz Ayudhya" data-en="Allianz Ayudhya">Allianz Ayudhya</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <button id="dark-mode-toggle" class="tap w-9 h-9 rounded-xl app-card flex items-center justify-center text-slate-500 dark:text-slate-300">
+        <i data-lucide="sun" class="w-[18px] h-[18px] hidden dark:block"></i>
+        <i data-lucide="moon" class="w-[18px] h-[18px] block dark:hidden"></i>
+      </button>
+      <div class="flex bg-slate-200/70 dark:bg-white/5 p-1 rounded-xl text-[11px] font-bold">
+        <button id="lang-th-btn" onclick="toggleLanguage('TH')" class="px-2.5 py-1.5 rounded-lg bg-accent text-white">TH</button>
+        <button id="lang-en-btn" onclick="toggleLanguage('EN')" class="px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400">EN</button>
+      </div>
+    </div>
+  </header>
 
-        <!-- Dynamic Language Selector -->
-        <div class="flex bg-slate-200/60 dark:bg-slate-950/60 p-1 rounded-xl border border-slate-300/30 dark:border-white/10 text-[11px] font-bold shadow-sm">
-          <button id="lang-th-btn" class="px-2.5 py-1.5 rounded-lg bg-blue-600 text-white transition-all" onclick="toggleLanguage('TH')">TH</button>
-          <button id="lang-en-btn" class="px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 transition-all" onclick="toggleLanguage('EN')">EN</button>
+  <main class="flex-1 px-4 pt-5 flex flex-col gap-5">
+
+    <!-- GREETING -->
+    <section>
+      <p class="text-xs font-semibold text-slate-400 dark:text-slate-500" data-th="ยินดีต้อนรับ" data-en="Welcome back">ยินดีต้อนรับ</p>
+      <h1 class="font-display text-2xl font-bold text-slate-900 dark:text-white mt-0.5" data-th="เส้นทางสู่ที่ปรึกษามืออาชีพ" data-en="Your path to advisory success">เส้นทางสู่ที่ปรึกษามืออาชีพ</h1>
+    </section>
+
+    <!-- MEMBER / DIGITAL ID CARD (signature element) -->
+    <section class="member-card rounded-3xl p-5 text-white relative">
+      <div class="relative z-10 flex items-start justify-between">
+        <div>
+          <p class="text-[10px] font-bold tracking-[0.2em] text-blue-300/80 uppercase" data-th="บัตรตัวแทนดิจิทัล" data-en="Digital agent card">บัตรตัวแทนดิจิทัล</p>
+          <p class="font-display text-xl font-bold mt-1">BLUE STAR X</p>
         </div>
-        
-        <button id="share-btn" class="p-2.5 rounded-xl bento-card text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white transition-all hover:scale-105 active:scale-95 shadow-sm" title="Share Digital Card">
-          <i data-lucide="share-2" class="w-4 h-4"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- Brand Identity Hero Panel -->
-    <section class="flex flex-col items-center text-center mt-3 w-full">
-      <!-- Premium Success Gateway Symbol (Staircase to door + Glowing star) -->
-      <div class="relative group cursor-pointer mb-5">
-        <!-- Outer orbiting glow boundaries -->
-        <div class="absolute -inset-6 rounded-full border border-dashed border-blue-500/10 dark:border-blue-500/25 group-hover:border-blue-500/40 animate-spin-slow transition-all duration-700"></div>
-        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-500 opacity-15 blur-2xl group-hover:opacity-25 transition-opacity duration-700"></div>
-        
-        <!-- Centerpiece Gateway Doorway representation -->
-        <div class="relative w-28 h-28 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-blue-500/25 flex items-center justify-center overflow-hidden shadow-md door-glow">
-          <svg class="w-14 h-14 text-blue-700 dark:text-blue-400 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
-            <!-- Rising pathway -->
-            <path d="M4 22 C 8 18, 10 12, 12 4 C 14 12, 16 18, 20 22" stroke-dasharray="1 1" />
-            <!-- Main Corporate Gate / Doorway -->
-            <path d="M8 21V6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v15" class="stroke-current" />
-            <!-- Guiding Success Star -->
-            <polygon points="12,7 13,9.5 15.5,9.5 13.5,11 14.5,13.5 12,12 9.5,13.5 10.5,11 8.5,9.5 11,9.5" fill="currentColor" fill-opacity="0.3" class="text-blue-500 dark:text-blue-300" />
-            <!-- Dynamic stairs representation -->
-            <line x1="9" y1="18" x2="15" y2="18" />
-            <line x1="10" y1="15" x2="14" y2="15" />
-            <line x1="11" y1="12" x2="13" y2="12" />
-          </svg>
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+          <i data-lucide="badge-check" class="w-5 h-5 text-blue-200"></i>
         </div>
-        
-        <span class="absolute bottom-1 right-1 bg-gradient-to-tr from-blue-700 to-indigo-700 text-white p-2.5 rounded-2xl shadow-md border-2 border-slate-50 dark:border-[#030712] hover:scale-110 transition-transform">
-          <i data-lucide="shield-check" class="w-4 h-4"></i>
-        </span>
       </div>
-
-      <div class="flex flex-col items-center gap-1">
-        <span class="text-[11px] font-bold tracking-[0.3em] text-blue-800 dark:text-blue-400 uppercase select-none" data-th="อลิอันซ์ อยุธยา" data-en="ALLIANZ AYUDHYA">อลิอันซ์ อยุธยา</span>
-        <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-display">
-          BLUE STAR
-        </h1>
-        <div class="h-1 w-12 bg-blue-600 rounded-full my-2"></div>
-        <p class="text-xs font-bold px-3 py-1.5 rounded-xl bg-blue-100/80 dark:bg-blue-500/10 border border-blue-200/50 dark:border-blue-500/20 text-blue-700 dark:text-blue-300 select-none"
-           data-th="ที่ปรึกษาการเงิน & ตัวแทนประกันชีวิตมืออาชีพ" data-en="Professional Financial Advisor & Life Agent">
-          ที่ปรึกษาการเงิน & ตัวแทนประกันชีวิตมืออาชีพ
-        </p>
-      </div>
-
-      <!-- Core philosophy quotes (From uploaded image text "ไม่มีใครรู้ว่าศักยภาพของคุณจะพาคุณไปได้ไกลแค่ไหน จนกว่าคุณจะให้โอกาสมัน") -->
-      <p class="text-slate-600 dark:text-slate-300 font-medium max-w-lg text-sm sm:text-base leading-relaxed mt-4.5 px-3.5 border-l-2 border-blue-500/40 italic text-left sm:text-center"
-         data-th="“ไม่มีใครรู้ว่า ศักยภาพของคุณจะพาคุณไปได้ไกลแค่ไหน จนกว่าคุณจะให้โอกาสมัน ให้โอกาสตัวเองในวันนี้ แล้วคุณจะไปได้ไกลกว่าที่คิด”"
-         data-en="“No one knows how far your potential will take you, until you give it a chance. Give yourself that opportunity today, and you will go further than you think.”">
-        “ไม่มีใครรู้ว่า ศักยภาพของคุณจะพาคุณไปได้ไกลแค่ไหน จนกว่าคุณจะให้โอกาสมัน ให้โอกาสตัวเองในวันนี้ แล้วคุณจะไปได้ไกลกว่าที่คิด”
+      <p class="relative z-10 text-xs text-blue-100/85 leading-relaxed mt-4 max-w-[85%]" data-th="ที่ปรึกษาการเงิน & ตัวแทนประกันชีวิตมืออาชีพ สังกัดอลิอันซ์ อยุธยา" data-en="Professional financial advisor & authorized life agent, Allianz Ayudhya">
+        ที่ปรึกษาการเงิน & ตัวแทนประกันชีวิตมืออาชีพ สังกัดอลิอันซ์ อยุธยา
       </p>
-
-      <!-- Global verification coordinates -->
-      <div class="flex items-center gap-4 mt-5 text-xs font-bold text-slate-500 dark:text-slate-400 select-none">
-        <span class="flex items-center gap-1.5">
-          <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i> Allianz Authorized Agency
-        </span>
-        <span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
-        <span class="flex items-center gap-1.5">
-          <i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Bangkok, Thailand
-        </span>
+      <div class="relative z-10 flex items-center justify-between mt-5 pt-4 border-t border-white/10">
+        <div class="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span data-th="สถานะ: Active Partner" data-en="Status: Active Partner">สถานะ: Active Partner</span>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] font-semibold text-slate-300">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+          <span>Bangkok, TH</span>
+        </div>
       </div>
     </section>
 
-    <!-- Social Connect Floating Toolbar -->
-    <section class="w-full flex justify-center gap-3 py-0.5">
-      <a href="mailto:info@allianz.co.th" class="p-3.5 rounded-2xl bento-card text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 active:scale-95 transition-all shadow-sm" title="Direct Email">
-        <i data-lucide="mail" class="w-5 h-5"></i>
-      </a>
-      <a href="tel:1373" class="p-3.5 rounded-2xl bento-card text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 active:scale-95 transition-all shadow-sm" title="Contact Center Phone">
-        <i data-lucide="phone" class="w-5 h-5"></i>
-      </a>
-      <a href="https://youtube.com" target="_blank" class="p-3.5 rounded-2xl bento-card text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 active:scale-95 transition-all shadow-sm" title="YouTube Business Seminars">
-        <i data-lucide="youtube" class="w-5 h-5"></i>
-      </a>
-      <a href="https://drive.google.com" target="_blank" class="p-3.5 rounded-2xl bento-card text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 active:scale-95 transition-all shadow-sm" title="Google Drive Share Kit">
-        <i data-lucide="hard-drive" class="w-5 h-5"></i>
-      </a>
+    <!-- STAT ROW -->
+    <section class="grid grid-cols-3 gap-3">
+      <div class="app-card rounded-2xl p-3.5 flex flex-col gap-1.5">
+        <div class="icon-badge bg-blue-50 dark:bg-blue-500/10 text-accent"><i data-lucide="calendar-days" class="w-5 h-5"></i></div>
+        <p class="font-display text-lg font-bold text-slate-900 dark:text-white leading-none" id="stat-events">4</p>
+        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 leading-tight" data-th="กิจกรรมเดือนนี้" data-en="Events this month">กิจกรรมเดือนนี้</p>
+      </div>
+      <div class="app-card rounded-2xl p-3.5 flex flex-col gap-1.5">
+        <div class="icon-badge bg-amber-50 dark:bg-amber-500/10 text-amber-500"><i data-lucide="image" class="w-5 h-5"></i></div>
+        <p class="font-display text-lg font-bold text-slate-900 dark:text-white leading-none">120+</p>
+        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 leading-tight" data-th="สื่อประชาสัมพันธ์" data-en="Media assets">สื่อประชาสัมพันธ์</p>
+      </div>
+      <div class="app-card rounded-2xl p-3.5 flex flex-col gap-1.5">
+        <div class="icon-badge bg-emerald-50 dark:bg-emerald-500/10 text-emerald-500"><i data-lucide="users" class="w-5 h-5"></i></div>
+        <p class="font-display text-lg font-bold text-slate-900 dark:text-white leading-none">2</p>
+        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 leading-tight" data-th="โปรแกรมอาชีพ" data-en="Career tracks">โปรแกรมอาชีพ</p>
+      </div>
     </section>
 
-    <!-- Bento Panel Configuration -->
-    <section class="w-full flex flex-col gap-4.5">
-
-      <!-- 🌟 [BENTO CARD 1] BUTTON คลังสื่อประชาสัมพันธ์ขนาดใหญ่พรีเมียม (ไว้บนสุด) -->
-      <a href="https://drive.google.com" target="_blank" class="group w-full p-6.5 rounded-3xl bento-card bento-clickable flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 overflow-hidden relative border-l-4 border-l-blue-600 dark:border-l-blue-500">
-        <!-- Shine effect -->
-        <div class="absolute -inset-y-0 -left-full w-1/2 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent group-hover:animate-shine-slow"></div>
-        <div class="absolute -right-12 -top-12 w-44 h-44 rounded-full bg-blue-500/5 dark:bg-white/5 blur-2xl transition-all"></div>
-        
-        <div class="flex items-center gap-4.5 pl-1 relative z-10">
-          <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-700 dark:text-blue-400 group-hover:scale-105 transition-transform duration-300">
-            <i data-lucide="folder-git-2" class="w-6.5 h-6.5"></i>
-          </div>
-          <div class="flex flex-col text-left">
-            <span class="text-[9px] font-bold tracking-[0.2em] text-blue-700 dark:text-blue-400 uppercase select-none" data-th="แชร์และดาวน์โหลดแบรนด์คิทภายใน" data-en="SHARED BRANDING PORTAL & INTERNAL MEDIA">คลังภาพและแชร์แบรนด์ดิ้งภายใน</span>
-            <h3 class="text-lg font-extrabold text-slate-900 dark:text-white" data-th="คลังภาพสื่อประชาสัมพันธ์ (Google Drive)" data-en="Marketing Kits & Media Hub (Google Drive)">คลังภาพสื่อประชาสัมพันธ์ (Google Drive)</h3>
-          </div>
-        </div>
-        
-        <!-- iOS Style Interactive Button Pill -->
-        <div class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm group-hover:scale-[1.03] transition-transform select-none self-end sm:self-auto relative z-10">
-          <span data-th="เปิดคลังสื่อ" data-en="Open Folder">เปิดคลังสื่อ</span>
-          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-        </div>
-      </a>
-
-      <!-- 🎥 [BENTO CARD 2] PLAYABLE YOUTUBE PREVIEW (วิดีโอแนะแนวถัดลงมา) -->
-      <div class="w-full p-5 rounded-3xl bento-card flex flex-col gap-4.5 relative overflow-hidden">
-        <div class="flex justify-between items-center px-1">
-          <div class="flex items-center gap-2">
-            <div class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></div>
-            <span class="text-[10px] font-bold tracking-widest text-red-600 dark:text-red-400 uppercase select-none" data-th="วิดีโอแนะนำพิเศษ" data-en="FEATURED PRESENTATION VIDEO">วิดีโอแนะนำพิเศษ</span>
-          </div>
-          <span class="text-[9px] font-bold text-slate-400 dark:text-slate-500" data-th="สัมมนาแนวคิดออนไลน์" data-en="ONLINE SEMINAR INTRO">สัมมนาแนวคิดออนไลน์</span>
-        </div>
-        
-        <!-- Embedded Video Frame with iOS Player mask -->
-        <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md border border-slate-200/60 dark:border-white/5 bg-black">
-          <iframe 
-            class="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/DF4xnCTQUxs?rel=0" 
-            title="BLUE STAR Allianz Ayudhya Career Presentation" 
-            frameborder="0" 
-            allow="transparent" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
-        </div>
-        
-        <!-- Video Tagline matching uploaded 10.jpg concepts -->
-        <div class="px-1 text-left">
-          <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-relaxed" data-th="ความสำเร็จไม่มีวันเกิด หากเราไม่เลือกที่จะมอบโอกาสให้กับตนเอง" data-en="Success has no birthday, unless you choose to give yourself a real opportunity.">
-            ความสำเร็จไม่มีวันเกิด หากเราไม่เลือกที่จะมอบโอกาสให้กับตนเอง
-          </p>
-        </div>
-      </div>
-
-      <!-- 🔗 [BENTO CARD 3] Official Web Navigation (Updated Specific Allianz BlueStar Link) -->
-      <a href="https://www.allianz.co.th/th_TH/bluestar.html" target="_blank" class="group w-full p-5 rounded-3xl bento-card bento-clickable flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 overflow-hidden">
-        <div class="flex items-center gap-4 pl-1 text-left relative z-10">
-          <div class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center text-indigo-700 dark:text-indigo-400 group-hover:scale-105 transition-transform duration-300">
-            <i data-lucide="globe" class="w-5.5 h-5.5"></i>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-[9px] font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase select-none" data-th="เว็บไซต์หลักอลิอันซ์ อยุธยา" data-en="ALLIANZ CORE WEBSITE PORTAL">เว็บไซต์หลักอลิอันซ์ อยุธยา</span>
-            <h4 class="text-base font-extrabold text-slate-900 dark:text-white" data-th="ศูนย์ข้อมูลวางแผนและแบบประกันสุขภาพ" data-en="Web Protection & Life Savings Center">ศูนย์ข้อมูลวางแผนและแบบประกันสุขภาพ</h4>
-          </div>
-        </div>
-        
-        <!-- iOS Style Interactive Button Pill -->
-        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 text-slate-700 dark:text-slate-300 group-hover:text-white text-xs font-bold shadow-sm transition-all select-none self-end sm:self-auto border border-slate-200 dark:border-slate-700/60 group-hover:border-transparent">
-          <span data-th="เข้าชมเว็บไซต์" data-en="Visit Site">เข้าชมเว็บไซต์</span>
-          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-        </div>
-      </a>
-
-      <!-- 🌌 [BENTO CARD 4] พื้นที่แสดงภาพโปสเตอร์ความสำเร็จหลัก (Poster Areaก่อนปฏิทิน) -->
-      <div class="w-full rounded-3xl overflow-hidden border border-slate-200 dark:border-blue-500/15 shadow-md relative group">
-        <!-- Simulated dynamic visual poster of Potential and Opportunity -->
-        <div class="bg-gradient-to-br from-[#003781] via-[#091633] to-[#020612] p-6.5 sm:p-8.5 flex flex-col justify-between min-h-[240px] relative">
-          <!-- Geometric Success Stairway Background line graphic -->
-          <div class="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" stroke="currentColor">
-              <path d="M 10 90 L 30 70 L 50 50 L 70 30 L 90 10" stroke-width="0.5" />
-              <path d="M 0 100 Q 50 50 100 0" stroke-width="1" stroke-dasharray="2 2" />
-            </svg>
-          </div>
-          <!-- Corner brand mark -->
-          <div class="flex justify-between items-center relative z-10">
-            <span class="text-[9px] font-bold tracking-[0.25em] text-blue-400 uppercase">ALLIANZ AYUDHYA</span>
-            <span class="text-[9px] font-extrabold bg-blue-500/25 text-blue-300 border border-blue-500/35 px-2 py-0.5 rounded">EXECUTIVE VIEW</span>
-          </div>
-          <!-- Content Slogan inspired directly by image 10.jpg -->
-          <div class="my-6 relative z-10 text-left">
-            <h4 class="text-2xl sm:text-3xl font-black text-white leading-tight font-display mb-2.5" data-th="ศักยภาพ...ไม่เคยมีวันเกิด" data-en="Potential Has No Birthday">
-              ศักยภาพ...ไม่เคยมีวันเกิด
-            </h4>
-            <p class="text-xs sm:text-sm text-slate-300 max-w-md leading-relaxed" data-th="ให้โอกาสตัวเองในวันนี้ แล้วคุณจะไปได้ไกลกว่าที่คิด สู่จุดเริ่มต้นงานที่ปรึกษาทางการเงินระดับมืออาชีพ" data-en="Give yourself a real opportunity today, and you will go further than you think. Start your high-tier advisory career now.">
-              ให้โอกาสตัวเองในวันนี้ แล้วคุณจะไปได้ไกลกว่าที่คิด สู่จุดเริ่มต้นงานที่ปรึกษาทางการเงินระดับมืออาชีพ
-            </p>
-          </div>
-          <!-- Interactive Badge bottom -->
-          <div class="flex items-center gap-2 text-[10px] font-bold text-blue-400/90 relative z-10">
-            <i data-lucide="award" class="w-4 h-4 animate-float"></i>
-            <span data-th="สังกัดตัวแทนระดับเกียรติยศ BLUE STAR" data-en="BLUE STAR ELITE HONOR PROGRAM">สังกัดตัวแทนระดับเกียรติยศ BLUE STAR</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 🗓️ [BENTO CARD 5] INTERACTIVE CALENDAR WITH EVENT SCHEDULE (ตารางงานตามวันที่ถูกเลือก) -->
-      <div class="w-full p-5 sm:p-6 rounded-3xl bento-card flex flex-col gap-4.5 relative overflow-hidden">
-        <div class="flex justify-between items-center px-1">
-          <div class="text-left">
-            <span class="text-[9px] font-bold tracking-widest text-blue-700 dark:text-blue-400 uppercase" data-th="ปฏิทินแผนงานและกิจกรรมสัมมนาประจำเดือน" data-en="MONTHLY CALENDAR & SYNCED EVENTS">ปฏิทินแผนงานและกิจกรรมสัมมนาประจำเดือน</span>
-            <h3 class="text-base font-extrabold text-slate-900 dark:text-white mt-0.5" data-th="ตารางแผนงานกิจกรรม BLUE STAR" data-en="BLUE STAR Interactive Roadmap">ตารางสัญญานกิจกรรม BLUE STAR</h3>
-          </div>
-          <div class="px-2.5 py-1 rounded-lg bg-blue-100 dark:bg-blue-950 text-[10px] font-bold text-blue-800 dark:text-blue-300 select-none" id="calendar-month-indicator">
-            กรกฎาคม 2026 / July 2026
-          </div>
-        </div>
-
-        <!-- Mini Calendar Grid Layout (Clean iOS Layout) -->
-        <div class="bg-slate-100/50 dark:bg-slate-950/30 p-3.5 rounded-2xl border border-slate-200/60 dark:border-white/5 flex flex-col gap-2.5">
-          <!-- Days of Week labels -->
-          <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase select-none">
-            <span data-th="อา" data-en="Su">อา</span>
-            <span data-th="จ" data-en="Mo">จ</span>
-            <span data-th="อ" data-en="Tu">อ</span>
-            <span data-th="พ" data-en="We">พ</span>
-            <span data-th="พฤ" data-en="Th">พฤ</span>
-            <span data-th="ศ" data-en="Fr">ศ</span>
-            <span data-th="ส" data-en="Sa">ส</span>
-          </div>
-
-          <!-- Days Grid (July 2026: Starts on Wednesday) -->
-          <div class="grid grid-cols-7 gap-1.5 text-center text-xs font-bold" id="calendar-days-grid">
-            <!-- Empty days for alignment -->
-            <span class="py-1.5 text-slate-300 dark:text-slate-800 font-normal select-none"></span>
-            <span class="py-1.5 text-slate-300 dark:text-slate-800 font-normal select-none"></span>
-            <span class="py-1.5 text-slate-300 dark:text-slate-800 font-normal select-none">1</span>
-            <span class="py-1.5 text-slate-300 dark:text-slate-800 font-normal select-none">2</span>
-            <span class="py-1.5 text-slate-300 dark:text-slate-800 font-normal select-none">3</span>
-            <span class="py-1.5 text-slate-300 dark:text-slate-800 font-normal select-none">4</span>
-            
-            <!-- Highlighting event days: 5, 12, 19, 26 with Active iOS dots indicators -->
-            <button class="calendar-day relative py-2 rounded-xl text-xs font-bold transition-all focus:outline-none" onclick="selectCalendarDate(5)">
-              <span>5</span>
-              <span class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400"></span>
-            </button>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">6</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">7</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">8</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">9</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">10</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">11</span>
-            
-            <button class="calendar-day relative py-2 rounded-xl text-xs font-bold transition-all focus:outline-none" onclick="selectCalendarDate(12)">
-              <span>12</span>
-              <span class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400"></span>
-            </button>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">13</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">14</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">15</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">16</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">17</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">18</span>
-            
-            <button class="calendar-day relative py-2 rounded-xl text-xs font-bold transition-all focus:outline-none" onclick="selectCalendarDate(19)">
-              <span>19</span>
-              <span class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400"></span>
-            </button>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">20</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">21</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">22</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">23</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">24</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">25</span>
-            
-            <button class="calendar-day relative py-2 rounded-xl text-xs font-bold transition-all focus:outline-none" onclick="selectCalendarDate(26)">
-              <span>26</span>
-              <span class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400"></span>
-            </button>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">27</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">28</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">29</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">30</span>
-            <span class="py-2 text-slate-400 dark:text-slate-600 font-normal select-none">31</span>
-          </div>
-        </div>
-
-        <!-- Dynamic Event Description Card based on Toggle Date (With high visibility contrast) -->
-        <div class="p-4.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5 flex flex-col gap-2.5 transition-all duration-300 text-left" id="calendar-event-display">
-          <div class="flex items-center justify-between text-xs font-bold text-blue-700 dark:text-blue-400 border-b border-slate-200 dark:border-white/5 pb-2">
-            <span id="event-date-title" class="tracking-wide">วันที่ 5 กรกฎาคม 2026 / July 5, 2026</span>
-            <span id="event-time-tag" class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-500/10">13:00 - 15:00 น.</span>
-          </div>
-          <h4 class="text-base font-extrabold text-slate-900 dark:text-white mt-1" id="event-headline">
-            BLUE STAR Career Talk: เจาะลึกเส้นทางสู่ความสำเร็จตัวแทนประกันชีวิต
-          </h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium" id="event-description">
-            ร่วมเปิดมุมมองโอกาสทางธุรกิจ แผนการสร้างรายได้ที่มั่นคง และเครื่องมือช่วยเหลือแบรนด์ดิ้งจากสังกัดอลิอันซ์ อยุธยา สู่การพัฒนาศักยภาพไร้ขีดจำกัด
-          </p>
-        </div>
-      </div>
-
-      <!-- 🌟 [BENTO CARD 6] TWO PROGRAMS SPOTLIGHT PANEL (BLUE STAR & BLUE STAR X) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4.5">
-        
-        <!-- BLUE STAR Insurance Agent Role Card -->
-        <div class="p-6 rounded-3xl bento-card text-left flex flex-col justify-between gap-4 relative overflow-hidden group">
-          <div class="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-blue-500/5 group-hover:bg-blue-500/10 blur-xl transition-all duration-500"></div>
-          <div>
-            <div class="flex justify-between items-start mb-3">
-              <div class="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 shadow-sm border border-blue-200/40 dark:border-blue-500/10">
-                <i data-lucide="shield" class="w-5.5 h-5.5"></i>
-              </div>
-              <span class="text-[9px] font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase select-none">ALLIANZ AYUDHYA</span>
-            </div>
-            <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">BLUE STAR</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium" 
-               data-th="ผู้ที่ทำหน้าที่แทน บริษัท อลิอันซ์ อยุธยา ประกันชีวิต ในการนำเสนอขายสินค้า (กรมธรรม์) เช่น ประกันชีวิต ประกันสุขภาพ ของบริษัทแก่บุคคลทั่วไป"
-               data-en="Authorized representatives presenting core insurance policies including elite healthcare and life protection packages directly on behalf of Allianz Ayudhya.">
-              ผู้ที่ทำหน้าที่แทน บริษัท อลิอันซ์ อยุธยา ประกันชีวิต ในการนำเสนอขายสินค้า (กรมธรรม์) เช่น ประกันชีวิต ประกันสุขภาพ ของบริษัทแก่บุคคลทั่วไป
-            </p>
-          </div>
-        </div>
-
-        <!-- BLUE STAR X Financial Advisor Role Card -->
-        <div class="p-6 rounded-3xl bento-card text-left flex flex-col justify-between gap-4 relative overflow-hidden group">
-          <div class="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-cyan-500/5 group-hover:bg-cyan-500/10 blur-xl transition-all duration-500"></div>
-          <div>
-            <div class="flex justify-between items-start mb-3">
-              <div class="p-2.5 rounded-xl bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 shadow-sm border border-cyan-200/40 dark:border-cyan-500/10">
-                <i data-lucide="landmark" class="w-5.5 h-5.5"></i>
-              </div>
-              <span class="text-[9px] font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase select-none">ALLIANZ AYUDHYA</span>
-            </div>
-            <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">BLUE STAR X</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium" 
-               data-th="ผู้ที่ให้คำแนะนำ ให้คำปรึกษาในเรื่องการวางแผนการเงินส่วนบุคคล ทั้งในด้านบริหารจัดการความเสี่ยง ความคุ้มครองชีวิต ความคุ้มครองด้านสุขภาพ การออม การวางแผนเกษียณ รวมถึงบริหารจัดการภาษี อย่างมืออาชีพ"
-               data-en="Professional financial strategists providing personal planning consulting on high-level risk mitigation, core lifetime and medical protection, asset savings, retirement preparation, and advanced tax planning structures.">
-              ผู้ที่ให้คำแนะนำ ให้คำปรึกษาในเรื่องการวางแผนการเงินส่วนบุคคล ทั้งในด้านบริหารจัดการความเสี่ยง ความคุ้มครองชีวิต ความคุ้มครองด้านสุขภาพ การออม การวางแผนเกษียณ รวมถึงบริหารจัดการภาษี อย่างมืออาชีพ
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- FAQ Accordion (Professional and refined) -->
-      <div class="w-full p-6.5 rounded-3xl bento-card text-left flex flex-col gap-4">
-        <h3 class="text-xs font-bold tracking-widest text-blue-700 dark:text-blue-400 uppercase select-none mb-1" data-th="ข้อมูลวิชาชีพและข้อสงสัยเบื้องต้น" data-en="CAREER & PLAN ENQUIRIES">ข้อมูลวิชาชีพและข้อสงสัยเบื้องต้น</h3>
-        
-        <!-- Accordion Item 1 -->
-        <div class="border-b border-slate-200 dark:border-white/5 pb-3.5">
-          <button class="accordion-toggle flex justify-between items-center w-full text-left font-bold text-sm text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-white transition-colors py-1">
-            <span data-th="การเป็นที่ปรึกษากับ BLUE STAR แตกต่างจากที่อื่นอย่างไร?" data-en="How does training with BLUE STAR differentiate?">การเป็นที่ปรึกษากับ BLUE STAR แตกต่างจากที่อื่นอย่างไร?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 dark:text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="accordion-content hidden mt-2.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed pl-1 font-medium"
-               data-th="เราโดดเด่นด้วยระบบ Coaching ตัวต่อตัว คลังเครื่องมือดิจิทัลส่วนกลางบน Google Drive สื่อประชาสัมพันธ์มืออาชีพ ตลอดจนแผนฝึกอบรมโครงสร้างอาชีพเฉพาะทางที่ผ่านการรับรองสากล"
-               data-en="We provide systemic 1-on-1 career coaching, shared professional marketing assets, structural training programs, and the robust institutional reputation of Allianz Ayudhya.">
-            เราโดดเด่นด้วยระบบ Coaching ตัวต่อตัว คลังเครื่องมือดิจิทัลส่วนกลางบน Google Drive สื่อประชาสัมพันธ์มืออาชีพ ตลอดจนแผนฝึกอบรมโครงสร้างอาชีพเฉพาะทางที่ผ่านการรับรองสากล
-          </div>
-        </div>
-
-        <!-- Accordion Item 2 -->
-        <div class="border-b border-slate-200 dark:border-white/5 pb-3.5">
-          <button class="accordion-toggle flex justify-between items-center w-full text-left font-bold text-sm text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-white transition-colors py-1">
-            <span data-th="ไม่มีประสบการณ์และใบอนุญาต สามารถสมัครเข้าร่วมงานได้หรือไม่?" data-en="Can candidates join without direct experience or licenses?">ไม่มีประสบการณ์และใบอนุญาต สามารถสมัครเข้าร่วมงานได้หรือไม่?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 dark:text-slate-500 transition-transform duration-300"></i>
-          </button>
-          <div class="accordion-content hidden mt-2.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed pl-1 font-medium"
-               data-th="ได้แน่นอนครับ ทางทีมงานมีหลักสูตรเตรียมตัวสอบ ติววิชาการแบบทีละขั้นตอน ตลอดจนทีมพี่เลี้ยงที่จะคอยประกบและช่วยเหลือเพื่อให้ท่านผ่านการรับรองเป็นวิชาชีพตัวแทนประกันได้อย่างมั่นใจ"
-               data-en="Absolutely. We coordinate standard academic reviews, structured license preparation seminars, and direct mentorship support to prepare you for passing government certifications.">
-            ได้แน่นอนครับ ทางทีมงานมีหลักสูตรเตรียมตัวสอบ ติววิชาการแบบทีละขั้นตอน ตลอดจนทีมพี่เลี้ยงที่จะคอยประกบและช่วยเหลือเพื่อให้ท่านผ่านการรับรองเป็นวิชาชีพตัวแทนประกันได้อย่างมั่นใจ
-          </div>
-        </div>
-      </div>
-
-      <!-- ✉️ [BENTO CARD 7] PREMIUM EMAIL CONTACT CALL-TO-ACTION (ปุ่มอีเมลพรีเมียมขนาดใหญ่) -->
-      <div class="w-full p-6 sm:p-8 rounded-3xl bento-card flex flex-col items-center text-center gap-5.5 relative overflow-hidden shadow-sm">
-        <div class="absolute -right-16 -bottom-16 w-36 h-36 rounded-full bg-blue-500/5 blur-2xl"></div>
-        <div class="p-3.5 bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 rounded-full border border-blue-200/50 dark:border-blue-500/10 shadow-sm">
-          <i data-lucide="mail-open" class="w-7 h-7"></i>
-        </div>
-        <div class="flex flex-col gap-1.5 max-w-md">
-          <h3 class="text-xl font-extrabold text-slate-900 dark:text-white" data-th="ติดต่อหรือเข้าร่วมทีมงาน BLUE STAR" data-en="Connect with BLUE STAR Executives">ติดต่อหรือเข้าร่วมทีมงาน BLUE STAR</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium" data-th="ส่งข้อความระบุจุดประสงค์การวางแผนการเงินส่วนบุคคล แผนคุ้มครองสุขภาพอลิอันซ์ หรือร่วมสมัครเป็นพาร์ทเนอร์ตัวแทนทีมงานกับเราได้โดยตรงผ่านระบบอีเมล" data-en="Drop us an email query directly for personal financial planning consulting, Allianz health assurance portfolios, or onboarding recruitment details.">
-            ส่งข้อความระบุจุดประสงค์การวางแผนการเงินส่วนบุคคล แผนคุ้มครองสุขภาพอลิอันซ์ หรือร่วมสมัครเป็นพาร์ทเนอร์ตัวแทนทีมงานกับเราได้โดยตรงผ่านระบบอีเมล
-          </p>
-        </div>
-        
-        <!-- Large Premium Direct Email Button -->
-        <a href="mailto:info@allianz.co.th?subject=BLUE%20STAR%20Inquiry" class="group w-full sm:w-auto px-10 py-3.5 rounded-full bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-blue-600 dark:to-indigo-600 text-xs font-bold text-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-md flex items-center justify-center gap-2 select-none border border-white/10">
-          <span data-th="ส่งอีเมลติดต่อเราทันที" data-en="Send Official Email Inquiry">ส่งอีเมลติดต่อเราทันที</span> 
-          <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"></i>
+    <!-- QUICK ACTIONS -->
+    <section>
+      <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide mb-2.5 px-0.5" data-th="เมนูด่วน" data-en="Quick actions">เมนูด่วน</p>
+      <div class="grid grid-cols-4 gap-3">
+        <a href="https://drive.google.com" target="_blank" class="tap flex flex-col items-center gap-1.5">
+          <div class="icon-badge w-14 h-14 app-card !rounded-2xl text-accent"><i data-lucide="folder-open" class="w-6 h-6"></i></div>
+          <span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight" data-th="คลังสื่อ" data-en="Media hub">คลังสื่อ</span>
+        </a>
+        <a href="https://www.allianz.co.th/th_TH/bluestar.html" target="_blank" class="tap flex flex-col items-center gap-1.5">
+          <div class="icon-badge w-14 h-14 app-card !rounded-2xl text-indigo-500"><i data-lucide="globe" class="w-6 h-6"></i></div>
+          <span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight" data-th="เว็บไซต์" data-en="Website">เว็บไซต์</span>
+        </a>
+        <a href="#calendar-section" class="tap flex flex-col items-center gap-1.5">
+          <div class="icon-badge w-14 h-14 app-card !rounded-2xl text-rose-500"><i data-lucide="calendar-clock" class="w-6 h-6"></i></div>
+          <span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight" data-th="ปฏิทิน" data-en="Calendar">ปฏิทิน</span>
+        </a>
+        <a href="mailto:info@allianz.co.th?subject=BLUE%20STAR%20Inquiry" class="tap flex flex-col items-center gap-1.5">
+          <div class="icon-badge w-14 h-14 app-card !rounded-2xl text-emerald-500"><i data-lucide="mail" class="w-6 h-6"></i></div>
+          <span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight" data-th="ติดต่อ" data-en="Contact">ติดต่อ</span>
         </a>
       </div>
-
     </section>
 
-    <!-- Page Footer -->
-    <footer class="w-full flex flex-col items-center gap-2 mt-6 mb-4 text-center select-none text-slate-500">
-      <div class="flex items-center gap-1.5 text-[9px] font-bold tracking-widest uppercase">
-        <span>AUTHORIZED BY</span>
-        <span class="text-blue-600 dark:text-blue-400 font-extrabold flex items-center gap-0.5"><i data-lucide="award" class="w-3 h-3"></i> BLUE STAR</span>
-        <span>GROUP PARTNERS</span>
+    <!-- VIDEO CARD -->
+    <section class="app-card rounded-3xl p-4 flex flex-col gap-3.5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <span class="text-[11px] font-bold text-red-500 uppercase tracking-wide" data-th="วิดีโอแนะนำ" data-en="Featured video">วิดีโอแนะนำ</span>
+        </div>
+        <span class="text-[10px] font-semibold text-slate-400" data-th="สัมมนาออนไลน์" data-en="Online seminar">สัมมนาออนไลน์</span>
       </div>
-      <p class="text-[9px] text-slate-400 dark:text-slate-600" data-th="© 2026 บริษัท อลิอันซ์ อยุธยา ประกันชีวิต จำกัด (มหาชน). สงวนลิขสิทธิ์ทั้งหมด." data-en="© 2026 Allianz Ayudhya Life Assurance PCL. All rights reserved.">© 2026 บริษัท อลิอันซ์ อยุธยา ประกันชีวิต จำกัด (มหาชน). สงวนลิขสิทธิ์ทั้งหมด.</p>
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black">
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/DF4xnCTQUxs?rel=0" title="BLUE STAR Allianz Ayudhya Career Presentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <p class="text-[13px] font-semibold text-slate-700 dark:text-slate-200 leading-relaxed" data-th="ความสำเร็จไม่มีวันเกิด หากเราไม่เลือกที่จะมอบโอกาสให้กับตนเอง" data-en="Success has no birthday, unless you choose to give yourself a real opportunity.">
+        ความสำเร็จไม่มีวันเกิด หากเราไม่เลือกที่จะมอบโอกาสให้กับตนเอง
+      </p>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="flex flex-col gap-3">
+      <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide px-0.5" data-th="โปรแกรมอาชีพ" data-en="Career tracks">โปรแกรมอาชีพ</p>
+
+      <div class="app-card rounded-2xl p-4 flex items-start gap-3.5">
+        <div class="icon-badge bg-blue-50 dark:bg-blue-500/10 text-accent"><i data-lucide="shield" class="w-5 h-5"></i></div>
+        <div class="flex-1">
+          <p class="font-display font-bold text-sm text-slate-900 dark:text-white">BLUE STAR</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-1" data-th="ตัวแทนนำเสนอกรมธรรม์ ประกันชีวิตและสุขภาพในนามอลิอันซ์ อยุธยา" data-en="Authorized agent presenting Allianz Ayudhya life and health policies.">
+            ตัวแทนนำเสนอกรมธรรม์ ประกันชีวิตและสุขภาพในนามอลิอันซ์ อยุธยา
+          </p>
+        </div>
+      </div>
+
+      <div class="app-card rounded-2xl p-4 flex items-start gap-3.5">
+        <div class="icon-badge bg-cyan-50 dark:bg-cyan-500/10 text-cyan-500"><i data-lucide="landmark" class="w-5 h-5"></i></div>
+        <div class="flex-1">
+          <p class="font-display font-bold text-sm text-slate-900 dark:text-white">BLUE STAR X</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-1" data-th="ที่ปรึกษาการวางแผนการเงินส่วนบุคคล ความเสี่ยง การออม เกษียณ และภาษี" data-en="Personal financial planning consultant covering risk, savings, retirement and tax.">
+            ที่ปรึกษาการวางแผนการเงินส่วนบุคคล ความเสี่ยง การออม เกษียณ และภาษี
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section id="calendar-section" class="app-card rounded-3xl p-4 flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <p class="font-display font-bold text-sm text-slate-900 dark:text-white" data-th="ปฏิทินกิจกรรม" data-en="Event calendar">ปฏิทินกิจกรรม</p>
+        <span class="px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-[10px] font-bold text-accent">กรกฎาคม 2026</span>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-white/[0.03] rounded-2xl p-3">
+        <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1.5">
+          <span data-th="อา" data-en="Su">อา</span><span data-th="จ" data-en="Mo">จ</span><span data-th="อ" data-en="Tu">อ</span><span data-th="พ" data-en="We">พ</span><span data-th="พฤ" data-en="Th">พฤ</span><span data-th="ศ" data-en="Fr">ศ</span><span data-th="ส" data-en="Sa">ส</span>
+        </div>
+        <div class="grid grid-cols-7 gap-1.5 text-center text-xs font-bold" id="calendar-days-grid">
+          <span class="py-1.5"></span><span class="py-1.5"></span>
+          <span class="py-1.5 text-slate-300 dark:text-slate-700 font-medium">1</span>
+          <span class="py-1.5 text-slate-300 dark:text-slate-700 font-medium">2</span>
+          <span class="py-1.5 text-slate-300 dark:text-slate-700 font-medium">3</span>
+          <span class="py-1.5 text-slate-300 dark:text-slate-700 font-medium">4</span>
+          <button class="calendar-day relative py-2 rounded-xl" onclick="selectCalendarDate(5)"><span>5</span><span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"></span></button>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">6</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">7</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">8</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">9</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">10</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">11</span>
+          <button class="calendar-day relative py-2 rounded-xl" onclick="selectCalendarDate(12)"><span>12</span><span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"></span></button>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">13</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">14</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">15</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">16</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">17</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">18</span>
+          <button class="calendar-day relative py-2 rounded-xl" onclick="selectCalendarDate(19)"><span>19</span><span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"></span></button>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">20</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">21</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">22</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">23</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">24</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">25</span>
+          <button class="calendar-day relative py-2 rounded-xl" onclick="selectCalendarDate(26)"><span>26</span><span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"></span></button>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">27</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">28</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">29</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">30</span>
+          <span class="py-2 text-slate-400 dark:text-slate-600 font-medium">31</span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-slate-50 dark:bg-white/[0.03] p-3.5 flex flex-col gap-2" id="calendar-event-display">
+        <div class="flex items-center justify-between text-[11px] font-bold text-accent">
+          <span id="event-date-title">วันที่ 5 กรกฎาคม 2026</span>
+          <span id="event-time-tag" class="px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-500/10">13:00 - 15:00 น.</span>
+        </div>
+        <p class="text-sm font-bold text-slate-900 dark:text-white" id="event-headline">BLUE STAR Career Talk: เจาะลึกเส้นทางสู่ความสำเร็จตัวแทนประกันชีวิต</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" id="event-description">ร่วมเปิดมุมมองโอกาสทางธุรกิจ แผนการสร้างรายได้ที่มั่นคง และเครื่องมือช่วยเหลือแบรนด์ดิ้งจากสังกัดอลิอันซ์ อยุธยา</p>
+      </div>
+    </section>
+
+    <!-- FAQ LIST -->
+    <section class="app-card rounded-3xl p-4 flex flex-col gap-1">
+      <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide px-1 pb-2" data-th="คำถามที่พบบ่อย" data-en="Frequently asked">คำถามที่พบบ่อย</p>
+
+      <div class="border-t border-slate-100 dark:border-white/5">
+        <button class="accordion-toggle w-full flex items-center gap-3 py-3.5 text-left">
+          <div class="icon-badge w-9 h-9 !rounded-xl bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400"><i data-lucide="graduation-cap" class="w-4 h-4"></i></div>
+          <span class="flex-1 text-[13px] font-semibold text-slate-800 dark:text-slate-200" data-th="แตกต่างจากที่อื่นอย่างไร?" data-en="How is training different here?">แตกต่างจากที่อื่นอย่างไร?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div class="accordion-content hidden pb-3.5 pl-12 pr-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-th="เรามีระบบ Coaching ตัวต่อตัว คลังเครื่องมือดิจิทัล และสื่อประชาสัมพันธ์มืออาชีพให้ใช้งานฟรี" data-en="We provide 1-on-1 coaching, a shared digital toolkit, and free professional marketing assets.">
+          เรามีระบบ Coaching ตัวต่อตัว คลังเครื่องมือดิจิทัล และสื่อประชาสัมพันธ์มืออาชีพให้ใช้งานฟรี
+        </div>
+      </div>
+
+      <div class="border-t border-slate-100 dark:border-white/5">
+        <button class="accordion-toggle w-full flex items-center gap-3 py-3.5 text-left">
+          <div class="icon-badge w-9 h-9 !rounded-xl bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400"><i data-lucide="file-check-2" class="w-4 h-4"></i></div>
+          <span class="flex-1 text-[13px] font-semibold text-slate-800 dark:text-slate-200" data-th="ไม่มีใบอนุญาต สมัครได้ไหม?" data-en="Can I join without a license?">ไม่มีใบอนุญาต สมัครได้ไหม?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div class="accordion-content hidden pb-3.5 pl-12 pr-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-th="ได้ครับ ทีมงานมีหลักสูตรเตรียมสอบและพี่เลี้ยงคอยช่วยเหลือจนผ่านการรับรอง" data-en="Yes. Our team provides exam prep and mentorship until you're fully certified.">
+          ได้ครับ ทีมงานมีหลักสูตรเตรียมสอบและพี่เลี้ยงคอยช่วยเหลือจนผ่านการรับรอง
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="app-card rounded-3xl p-5 flex flex-col items-center text-center gap-3.5">
+      <div class="icon-badge bg-blue-50 dark:bg-blue-500/10 text-accent"><i data-lucide="mail-open" class="w-5 h-5"></i></div>
+      <div>
+        <h3 class="font-display font-bold text-base text-slate-900 dark:text-white" data-th="ติดต่อทีม BLUE STAR" data-en="Talk to BLUE STAR">ติดต่อทีม BLUE STAR</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-1" data-th="สอบถามแผนการเงิน สุขภาพ หรือสมัครร่วมทีมได้โดยตรง" data-en="Ask about plans, health coverage, or apply to join the team.">สอบถามแผนการเงิน สุขภาพ หรือสมัครร่วมทีมได้โดยตรง</p>
+      </div>
+      <a href="mailto:info@allianz.co.th?subject=BLUE%20STAR%20Inquiry" class="tap w-full py-3 rounded-2xl bg-accent text-white text-xs font-bold flex items-center justify-center gap-2">
+        <span data-th="ส่งอีเมลติดต่อเรา" data-en="Send an email">ส่งอีเมลติดต่อเรา</span>
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </a>
+    </section>
+
+    <footer class="flex flex-col items-center gap-1 py-5 text-center">
+      <p class="text-[10px] font-bold tracking-widest text-slate-400 dark:text-slate-600 uppercase">BLUE STAR GROUP PARTNERS</p>
+      <p class="text-[10px] text-slate-400 dark:text-slate-600" data-th="© 2026 บริษัท อลิอันซ์ อยุธยา ประกันชีวิต จำกัด (มหาชน)" data-en="© 2026 Allianz Ayudhya Life Assurance PCL">© 2026 บริษัท อลิอันซ์ อยุธยา ประกันชีวิต จำกัด (มหาชน)</p>
     </footer>
 
   </main>
+</div>
 
-  <!-- Interactive AI Assistant Floating Button -->
-  <button id="ai-chat-btn" class="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-blue-700 text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group border border-white/10" title="Access BLUE STAR Advisor Assistant">
-    <div class="absolute -inset-1 rounded-full bg-blue-500 opacity-20 group-hover:opacity-40 blur-md transition-opacity"></div>
-    <i data-lucide="bot" class="w-5.5 h-5.5" id="ai-btn-icon"></i>
-  </button>
-
-  <!-- AI Companion Slide-Over Panel -->
-  <div id="ai-panel" class="fixed inset-y-0 right-0 z-[100] w-full max-w-md glass-panel border-l border-slate-300/30 dark:border-white/10 shadow-2xl transform translate-x-full transition-transform duration-500 ease-out flex flex-col">
-    <!-- Header -->
-    <div class="p-5 border-b border-slate-200 dark:border-white/10 flex justify-between items-center bg-slate-100/50 dark:bg-slate-950/40">
-      <div class="flex items-center gap-3">
-        <div class="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400">
-          <i data-lucide="sparkles" class="w-5 h-5 animate-pulse-slow"></i>
-        </div>
-        <div>
-          <h3 class="font-extrabold text-slate-900 dark:text-white text-base font-display" data-th="ที่ปรึกษาวิชาชีพ BLUE STAR" data-en="BLUE STAR Career Advisor">ที่ปรึกษาวิชาชีพ BLUE STAR</h3>
-          <span class="text-[9px] text-emerald-600 dark:text-emerald-400 font-bold tracking-wider flex items-center gap-1 uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Gemini Intelligent Assistant
-          </span>
-        </div>
-      </div>
-      <button id="ai-close-btn" class="p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-white/10 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-    </div>
-
-    <!-- Chat Bubbles Area -->
-    <div id="ai-chat-messages" class="flex-1 overflow-y-auto p-5 flex flex-col gap-4 bg-slate-50/50 dark:bg-slate-950/25">
-      <!-- AI Welcome Message -->
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 flex items-center justify-center flex-shrink-0 text-[10px] font-bold">
-          BS
-        </div>
-        <div class="bg-white dark:bg-blue-500/10 border border-slate-200 dark:border-blue-500/15 rounded-2xl p-3.5 max-w-[80%] text-xs text-slate-700 dark:text-slate-200 leading-relaxed" id="ai-welcome-bubble">
-          ยินดีต้อนรับสู่ระบบอัตโนมัติของ BLUE STAR! ผมคือที่ปรึกษาวิชาชีพร่วมของ Allianz Ayudhya มีข้อมูลครบถ้วนเกี่ยวกับประกันสุขภาพ แผนภาษี แผนบำนาญ หรือวิธีการเข้าร่วมทีมประกันภัยเพื่อพัฒนาทักษะรายได้หลักแสน ถามผมได้ทันทีเลยนะครับ! 🌌
-        </div>
-      </div>
-    </div>
-
-    <!-- Input Bar -->
-    <div class="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-slate-950/40">
-      <form id="ai-chat-form" class="flex items-center gap-2">
-        <input type="text" id="ai-chat-input" required placeholder-th="พิมพ์คำถามเกี่ยวกับประกันภัย หรือโอกาสความสำเร็จ..." placeholder-en="Ask about Allianz policies, Google Drive folders or career paths..." class="flex-1 px-4 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-950/60 border border-slate-300 dark:border-white/10 text-xs focus:outline-none focus:border-blue-500 text-slate-800 dark:text-slate-200 transition-colors placeholder-slate-400">
-        <button type="submit" class="p-3.5 rounded-2xl bg-blue-700 hover:bg-blue-600 text-white transition-colors flex items-center justify-center shadow-md">
-          <i data-lucide="send" class="w-4 h-4"></i>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Screen Overlay for Success/Error Notification Modal -->
-  <div id="modal-overlay" class="fixed inset-0 z-50 bg-slate-950/60 dark:bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden transition-opacity duration-300">
-    <div id="modal-box" class="w-full max-w-sm rounded-3xl glass-panel p-6 text-center flex flex-col items-center gap-4 transform scale-95 transition-transform duration-300">
-      <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400" id="modal-icon-container">
-        <i data-lucide="check" class="w-8 h-8"></i>
-      </div>
-      <h3 class="text-xl font-extrabold text-slate-900 dark:text-white font-display" id="modal-title">ส่งข้อมูลสำเร็จ</h3>
-      <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" id="modal-desc">ระบบ BLUE STAR ได้บันทึกข้อมูลของท่านเรียบร้อยแล้ว ที่ปรึกษาอาวุโสจะรีบวิเคราะห์รายละเอียดความต้องการและส่งสัญญานตอบกลับโดยเร็ว</p>
-      <button id="modal-close-btn" class="w-full py-3 rounded-xl bg-slate-200/60 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-300/50 dark:border-white/15 text-xs font-bold text-slate-700 dark:text-slate-200 transition-all active:scale-95 mt-2">
-        ปิดหน้าต่าง
+<!-- BOTTOM APP TAB BAR -->
+<nav class="fixed bottom-0 left-0 right-0 z-40 flex justify-center pb-3 px-4 pointer-events-none">
+  <div class="app-frame w-full pointer-events-auto">
+    <div class="app-card rounded-3xl px-2 py-2 flex items-center justify-between shadow-lg">
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="tabbar-item active tap flex-1 flex flex-col items-center gap-1 py-1.5 rounded-2xl">
+        <i data-lucide="home" class="tab-icon w-5 h-5 text-slate-400"></i>
+        <span class="text-[9px] font-bold text-slate-400" data-th="หน้าแรก" data-en="Home">หน้าแรก</span>
+        <span class="tab-dot w-1 h-1 rounded-full bg-accent"></span>
+      </a>
+      <a href="https://drive.google.com" target="_blank" class="tabbar-item tap flex-1 flex flex-col items-center gap-1 py-1.5 rounded-2xl">
+        <i data-lucide="folder-open" class="tab-icon w-5 h-5 text-slate-400"></i>
+        <span class="text-[9px] font-bold text-slate-400" data-th="คลังสื่อ" data-en="Media">คลังสื่อ</span>
+        <span class="tab-dot w-1 h-1 rounded-full bg-accent"></span>
+      </a>
+      <a href="#calendar-section" class="tabbar-item tap flex-1 flex flex-col items-center gap-1 py-1.5 rounded-2xl">
+        <i data-lucide="calendar-days" class="tab-icon w-5 h-5 text-slate-400"></i>
+        <span class="text-[9px] font-bold text-slate-400" data-th="ปฏิทิน" data-en="Calendar">ปฏิทิน</span>
+        <span class="tab-dot w-1 h-1 rounded-full bg-accent"></span>
+      </a>
+      <button id="ai-chat-btn" class="tabbar-item tap flex-1 flex flex-col items-center gap-1 py-1.5 rounded-2xl">
+        <i data-lucide="bot" id="ai-btn-icon" class="tab-icon w-5 h-5 text-slate-400"></i>
+        <span class="text-[9px] font-bold text-slate-400" data-th="ผู้ช่วย" data-en="Assistant">ผู้ช่วย</span>
+        <span class="tab-dot w-1 h-1 rounded-full bg-accent"></span>
       </button>
     </div>
   </div>
+</nav>
 
-  <!-- Toast Feed Container -->
-  <div id="toast-container" class="fixed bottom-6 left-6 z-[120] flex flex-col gap-2 pointer-events-none"></div>
+<!-- AI COMPANION PANEL -->
+<div id="ai-panel" class="fixed inset-y-0 right-0 z-[100] w-full max-w-md bg-app-bg dark:bg-app-bgdark border-l border-slate-200 dark:border-white/10 shadow-2xl transform translate-x-full transition-transform duration-500 ease-out flex flex-col">
+  <div class="p-4 border-b border-slate-200 dark:border-white/10 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="icon-badge bg-blue-50 dark:bg-blue-500/10 text-accent w-10 h-10"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+      <div>
+        <h3 class="font-display font-bold text-slate-900 dark:text-white text-sm" data-th="ที่ปรึกษาวิชาชีพ BLUE STAR" data-en="BLUE STAR Career Advisor">ที่ปรึกษาวิชาชีพ BLUE STAR</h3>
+        <span class="text-[10px] text-emerald-500 font-bold flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Online
+        </span>
+      </div>
+    </div>
+    <button id="ai-close-btn" class="w-9 h-9 rounded-xl app-card flex items-center justify-center text-slate-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+  </div>
 
-  <!-- SYSTEM SCRIPTS -->
-  <script>
-    // System Configurations
-    let activeLang = 'TH';
-    const htmlEl = document.documentElement;
+  <div id="ai-chat-messages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
+    <div class="flex items-start gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-500/10 text-accent flex items-center justify-center flex-shrink-0 text-[10px] font-bold">BS</div>
+      <div class="app-card rounded-2xl p-3.5 max-w-[80%] text-xs text-slate-700 dark:text-slate-200 leading-relaxed" id="ai-welcome-bubble">
+        ยินดีต้อนรับสู่ระบบอัตโนมัติของ BLUE STAR! มีข้อมูลเกี่ยวกับประกันสุขภาพ แผนภาษี แผนบำนาญ หรือวิธีเข้าร่วมทีม ถามได้เลยครับ
+      </div>
+    </div>
+  </div>
 
-    // Dark/Light Mode Mechanism
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    if (darkModeToggle) {
-      darkModeToggle.addEventListener('click', () => {
-        htmlEl.classList.toggle('dark');
-        const isDark = htmlEl.classList.contains('dark');
-        showToast(
-          activeLang === 'TH' 
-            ? `สลับไปยังระบบ ${isDark ? 'โหมดกลางคืน (ดาวเด่น)' : 'โหมดกลางวัน (สง่างาม)'}` 
-            : `Switched to ${isDark ? 'Stellar Dark Mode' : 'Executive Light Mode'}`, 
-          'palette'
-        );
-      });
+  <div class="p-3.5 border-t border-slate-200 dark:border-white/10">
+    <form id="ai-chat-form" class="flex items-center gap-2">
+      <input type="text" id="ai-chat-input" required placeholder-th="พิมพ์คำถาม..." placeholder-en="Ask a question..." class="flex-1 px-4 py-3 rounded-2xl app-card text-xs focus:outline-none focus:border-accent text-slate-800 dark:text-slate-200 placeholder-slate-400">
+      <button type="submit" class="w-11 h-11 rounded-2xl bg-accent text-white flex items-center justify-center flex-shrink-0"><i data-lucide="send" class="w-4 h-4"></i></button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+  <div id="modal-box" class="w-full max-w-sm rounded-3xl app-card p-6 text-center flex flex-col items-center gap-4 transform scale-95 transition-transform duration-300">
+    <div class="icon-badge bg-emerald-50 dark:bg-emerald-500/10 text-emerald-500 w-16 h-16" id="modal-icon-container"><i data-lucide="check" class="w-8 h-8"></i></div>
+    <h3 class="text-lg font-display font-bold text-slate-900 dark:text-white" id="modal-title">ส่งข้อมูลสำเร็จ</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" id="modal-desc">ระบบ BLUE STAR ได้บันทึกข้อมูลของท่านเรียบร้อยแล้ว</p>
+    <button id="modal-close-btn" class="w-full py-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-xs font-bold text-slate-700 dark:text-slate-200">ปิดหน้าต่าง</button>
+  </div>
+</div>
+
+<div id="toast-container" class="fixed bottom-24 left-4 z-[120] flex flex-col gap-2 pointer-events-none"></div>
+
+<script>
+let activeLang = 'TH';
+const htmlEl = document.documentElement;
+
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+if (darkModeToggle) {
+  darkModeToggle.addEventListener('click', () => {
+    htmlEl.classList.toggle('dark');
+    const isDark = htmlEl.classList.contains('dark');
+    showToast(activeLang === 'TH' ? `สลับเป็น ${isDark ? 'โหมดมืด' : 'โหมดสว่าง'}` : `Switched to ${isDark ? 'dark' : 'light'} mode`, 'sun');
+  });
+}
+
+const calendarEvents = {
+  5: { time: "13:00 - 15:00 น.", timeEn: "1:00 PM - 3:00 PM", headlineTh: "BLUE STAR Career Talk: เจาะลึกเส้นทางสู่ความสำเร็จตัวแทนประกันชีวิต", headlineEn: "BLUE STAR Career Talk: Unlocking Success in Life Insurance", descTh: "ร่วมเปิดมุมมองโอกาสทางธุรกิจ แผนการสร้างรายได้ที่มั่นคง และเครื่องมือช่วยเหลือแบรนด์ดิ้งจากสังกัดอลิอันซ์ อยุธยา", descEn: "Explore structured career growth plans, earning potential, and exclusive Allianz Ayudhya branding toolkits." },
+  12: { time: "10:00 - 12:30 น.", timeEn: "10:00 AM - 12:30 PM", headlineTh: "BLUE STAR X เวิร์กชอป: วางแผนภาษีและบริหารสินทรัพย์วัยเกษียณ", headlineEn: "BLUE STAR X Workshop: Tax and Retirement Masterclass", descTh: "เจาะลึกวิธีลดหย่อนภาษีเงินได้บุคคลธรรมดาด้วยประกันชีวิตและการออมทรัพย์เพื่อการเกษียณ", descEn: "An advanced masterclass on personal income tax mitigation and wealth protection using insurance assets." },
+  19: { time: "14:00 - 16:30 น.", timeEn: "2:00 PM - 4:30 PM", headlineTh: "Premium Health Forum: ทำความเข้าใจแผนคุ้มครองสุขภาพระดับโลก", headlineEn: "Premium Health Forum: Global Medical Protection", descTh: "เรียนรู้สิทธิประโยชน์ของประกันสุขภาพยอดนิยม การเคลมสินไหม และกรณีศึกษาโรคร้ายแรง", descEn: "Interactive breakdown of health policy benefits, global medical claims, and cancer care coverage." },
+  26: { time: "13:00 - 17:00 น.", timeEn: "1:00 PM - 5:00 PM", headlineTh: "Allianz Recruiter Day: วันคัดเลือกตัวแทนและที่ปรึกษาการเงินรุ่นใหม่", headlineEn: "Allianz Recruiter Day: Direct Interviews", descTh: "เปิดรับสมัครทีมงานใหม่ประจำเดือน ร่วมสัมภาษณ์พิเศษแบบรวดเร็วกับที่ปรึกษาอาวุโส", descEn: "Join fast-track interviews with Allianz senior agency executives." }
+};
+
+let selectedDate = 5;
+
+function selectCalendarDate(day) {
+  selectedDate = day;
+  document.querySelectorAll('.calendar-day').forEach(btn => {
+    const btnDay = parseInt(btn.querySelector('span').textContent);
+    if (btnDay === day) {
+      btn.className = "calendar-day relative py-2 rounded-xl bg-accent text-white font-black";
+    } else {
+      btn.className = "calendar-day relative py-2 rounded-xl text-slate-700 dark:text-slate-300 font-bold";
     }
+  });
+  renderSelectedEvent();
+  showToast(activeLang === 'TH' ? `แสดงแผนงานวันที่ ${day} กรกฎาคม` : `Viewing events for July ${day}`, 'calendar-days');
+}
 
-    // Event Mock Data for the Interactive Calendar
-    const calendarEvents = {
-      5: {
-        time: "13:00 - 15:00 น.",
-        timeEn: "1:00 PM - 3:00 PM",
-        headlineTh: "BLUE STAR Career Talk: เจาะลึกเส้นทางสู่ความสำเร็จตัวแทนประกันชีวิต",
-        headlineEn: "BLUE STAR Career Talk: Unlocking Success in Life Insurance",
-        descTh: "ร่วมเปิดมุมมองโอกาสทางธุรกิจ แผนการสร้างรายได้ที่มั่นคง และเครื่องมือช่วยเหลือแบรนด์ดิ้งจากสังกัดอลิอันซ์ อยุธยา สู่การพัฒนาศักยภาพไร้ขีดจำกัด",
-        descEn: "Explore structured career growth plans, high-tier earning algorithms, and exclusive Allianz Ayudhya digital branding toolkits."
-      },
-      12: {
-        time: "10:00 - 12:30 น.",
-        timeEn: "10:00 AM - 12:30 PM",
-        headlineTh: "BLUE STAR X เวิร์กชอป: วางแผนภาษีและบริหารสินทรัพย์วัยเกษียณ",
-        headlineEn: "BLUE STAR X Workshop: Tax optimization & Retirement Masterclass",
-        descTh: "เจาะลึกวิธีการคำนวณและลดหย่อนภาษีเงินได้บุคคลธรรมดาด้วยประกันชีวิตและการออมทรัพย์ เพื่อการเกษียณที่ปลอดภัยและมั่งคั่งตามมาตรฐานที่ปรึกษาการเงิน",
-        descEn: "An advanced masterclass regarding personal income tax mitigation and wealth protection utilizing insurance assets."
-      },
-      19: {
-        time: "14:00 - 16:30 น.",
-        timeEn: "2:00 PM - 4:30 PM",
-        headlineTh: "Premium Health Forum: ทำความเข้าใจแผนคุ้มครองสุขภาพระดับโลก",
-        headlineEn: "Premium Health Forum: Analyzing Elite Global Medical Protection",
-        descTh: "เรียนรู้และวิเคราะห์สิทธิประโยชน์ of ประกันสุขภาพปลดล็อคยอดนิยม การเคลมสินไหม และกรณีศึกษาพิเศษเพื่อรับมือภาวะโรคร้ายแรงได้อย่างอยู่หมัด",
-        descEn: "Interactive breakdown of modern health policy benefits, global medical network claims, and comprehensive cancer care coverage designs."
-      },
-      26: {
-        time: "13:00 - 17:00 น.",
-        timeEn: "1:00 PM - 5:00 PM",
-        headlineTh: "Allianz Recruiter Day: วันคัดเลือกตัวแทนและที่ปรึกษาการเงินรุ่นใหม่",
-        headlineEn: "Allianz Recruiter Day: Direct Interviews & Associate Matching",
-        descTh: "เปิดรับสมัครทีมงานใหม่ประจำเดือน! ร่วมทดสอบทัศนคติ พร้อมสัมภาษณ์พิเศษแบบรวดเร็วร่วมกับที่ปรึกษาอาวุโสเพื่อร่วมทีมตัวแทนระดับเพชร",
-        descEn: "Join direct fast-track interview modules with Allianz senior agency executives to launch your specialized financial associate path."
-      }
-    };
+function renderSelectedEvent() {
+  const event = calendarEvents[selectedDate];
+  const dateTitleEl = document.getElementById('event-date-title');
+  const timeTagEl = document.getElementById('event-time-tag');
+  const headlineEl = document.getElementById('event-headline');
+  const descEl = document.getElementById('event-description');
+  if (!event || !dateTitleEl) return;
+  if (activeLang === 'TH') {
+    dateTitleEl.textContent = `วันที่ ${selectedDate} กรกฎาคม 2026`;
+    timeTagEl.textContent = event.time;
+    headlineEl.textContent = event.headlineTh;
+    descEl.textContent = event.descTh;
+  } else {
+    dateTitleEl.textContent = `July ${selectedDate}, 2026`;
+    timeTagEl.textContent = event.timeEn;
+    headlineEl.textContent = event.headlineEn;
+    descEl.textContent = event.descEn;
+  }
+}
 
-    let selectedDate = 5; // Default active date shown in calendar description
-
-    // Dynamic Calendar Date Selection Switcher
-    function selectCalendarDate(day) {
-      selectedDate = day;
-      
-      // Update Active Styling on Calendar Buttons
-      document.querySelectorAll('.calendar-day').forEach(btn => {
-        const btnDay = parseInt(btn.querySelector('span').textContent);
-        if (btnDay === day) {
-          btn.className = "calendar-day relative py-2 rounded-xl text-xs font-black bg-blue-600 dark:bg-blue-500 text-white transition-all focus:outline-none shadow-md";
-        } else {
-          btn.className = "calendar-day relative py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all focus:outline-none";
-        }
-      });
-
-      // Render updated event descriptions based on language state
-      renderSelectedEvent();
-      showToast(activeLang === 'TH' ? `แสดงแผนงานวันที่ ${day} กรกฎาคม` : `Viewing events for July ${day}`, 'calendar');
+function toggleLanguage(lang) {
+  activeLang = lang;
+  const thBtn = document.getElementById('lang-th-btn');
+  const enBtn = document.getElementById('lang-en-btn');
+  if (thBtn && enBtn) {
+    if (lang === 'TH') {
+      thBtn.className = 'px-2.5 py-1.5 rounded-lg bg-accent text-white';
+      enBtn.className = 'px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400';
+    } else {
+      enBtn.className = 'px-2.5 py-1.5 rounded-lg bg-accent text-white';
+      thBtn.className = 'px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400';
     }
+  }
+  document.querySelectorAll('[data-th]').forEach(el => {
+    el.textContent = lang === 'TH' ? el.getAttribute('data-th') : el.getAttribute('data-en');
+  });
+  document.querySelectorAll('[placeholder-th]').forEach(el => {
+    el.placeholder = lang === 'TH' ? el.getAttribute('placeholder-th') : el.getAttribute('placeholder-en');
+  });
+  const welcomeBubble = document.getElementById('ai-welcome-bubble');
+  if (welcomeBubble) {
+    welcomeBubble.textContent = lang === 'TH'
+      ? "ยินดีต้อนรับสู่ระบบอัตโนมัติของ BLUE STAR! มีข้อมูลเกี่ยวกับประกันสุขภาพ แผนภาษี แผนบำนาญ หรือวิธีเข้าร่วมทีม ถามได้เลยครับ"
+      : "Welcome to BLUE STAR Assistant! Ask me about health policies, tax planning, retirement, or how to join the team.";
+  }
+  renderSelectedEvent();
+  showToast(lang === 'TH' ? 'ตั้งค่าภาษาไทยเรียบร้อย' : 'Language set to English', 'languages');
+}
 
-    function renderSelectedEvent() {
-      const event = calendarEvents[selectedDate];
-      const dateTitleEl = document.getElementById('event-date-title');
-      const timeTagEl = document.getElementById('event-time-tag');
-      const headlineEl = document.getElementById('event-headline');
-      const descEl = document.getElementById('event-description');
+const canvas = document.getElementById('constellation');
+const ctx = canvas ? canvas.getContext('2d') : null;
+let nodes = [];
 
-      if (!event) return;
-      if (!dateTitleEl || !timeTagEl || !headlineEl || !descEl) return;
-
-      if (activeLang === 'TH') {
-        dateTitleEl.textContent = `วันที่ ${selectedDate} กรกฎาคม 2026`;
-        timeTagEl.textContent = event.time;
-        headlineEl.textContent = event.headlineTh;
-        descEl.textContent = event.descTh;
-      } else {
-        dateTitleEl.textContent = `July ${selectedDate}, 2026`;
-        timeTagEl.textContent = event.timeEn;
-        headlineEl.textContent = event.headlineEn;
-        descEl.textContent = event.descEn;
-      }
-    }
-
-    // Language Swapper Mechanism
-    function toggleLanguage(lang) {
-      activeLang = lang;
-      const thBtn = document.getElementById('lang-th-btn');
-      const enBtn = document.getElementById('lang-en-btn');
-
-      if (thBtn && enBtn) {
-        if (lang === 'TH') {
-          thBtn.className = 'px-2.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold transition-all';
-          enBtn.className = 'px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 transition-all';
-        } else {
-          enBtn.className = 'px-2.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold transition-all';
-          thBtn.className = 'px-2.5 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 transition-all';
-        }
-      }
-
-      // Process elements translations with TH/EN data targets
-      document.querySelectorAll('[data-th]').forEach(el => {
-        el.textContent = lang === 'TH' ? el.getAttribute('data-th') : el.getAttribute('data-en');
-      });
-
-      // Update Form Inputs Placeholders
-      document.querySelectorAll('[placeholder-th]').forEach(el => {
-        el.placeholder = lang === 'TH' ? el.getAttribute('placeholder-th') : el.getAttribute('placeholder-en');
-      });
-
-      // Modify initial welcome message from AI Agent
-      const welcomeBubble = document.getElementById('ai-welcome-bubble');
-      if (welcomeBubble) {
-        welcomeBubble.textContent = lang === 'TH' 
-          ? "ยินดีต้อนรับสู่ระบบอัตโนมัติของ BLUE STAR! ผมคือที่ปรึกษาวิชาชีพร่วมของ Allianz Ayudhya มีข้อมูลครบถ้วนเกี่ยวกับประกันสุขภาพ แผนภาษี แผนบำนาญ หรือวิธีการเข้าร่วมทีมประกันภัยเพื่อพัฒนาทักษะรายได้หลักแสน ถามผมได้ทันทีเลยนะครับ! 🌌"
-          : "Welcome to BLUE STAR Professional Agent Assistant! I am the automated guide under Allianz Ayudhya. Ask me anything regarding premium health policies, personal retirement solutions, tax strategies, or how to launch your career to unlock your highest financial potential! 🌌";
-      }
-
-      // Re-render current calendar event based on new language choice
-      renderSelectedEvent();
-
-      showToast(lang === 'TH' ? 'ตั้งค่าระบุช่องสัญญาณภาษาไทยเสร็จสิ้น' : 'Language aligned to English', 'languages');
-    }
-
-    // Interactive Constellation Connections Web Engine (HTML5 Canvas)
-    const canvas = document.getElementById('constellation');
-    const ctx = canvas ? canvas.getContext('2d') : null;
-    let nodes = [];
-
-    function resizeCanvas() {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initNodes();
-    }
-
-    function initNodes() {
-      if (!canvas) return;
-      nodes = [];
-      const density = Math.floor((canvas.width * canvas.height) / 13000);
-      for (let i = 0; i < density; i++) {
-        nodes.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          vx: Math.random() * 0.4 - 0.2,
-          vy: Math.random() * 0.4 - 0.2
-        });
-      }
-    }
-
-    function drawNodes() {
-      if (!canvas || !ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const isDark = htmlEl.classList.contains('dark');
-      const connectionColor = isDark ? 'rgba(59, 130, 246, 0.08)' : 'rgba(0, 55, 129, 0.03)';
-      const nodeColor = isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 55, 129, 0.12)';
-
-      // Render connected constellations lines
-      for (let i = 0; i < nodes.length; i++) {
-        nodes[i].x += nodes[i].vx;
-        nodes[i].y += nodes[i].vy;
-
-        if (nodes[i].x < 0 || nodes[i].x > canvas.width) nodes[i].vx *= -1;
-        if (nodes[i].y < 0 || nodes[i].y > canvas.height) nodes[i].vy *= -1;
-
+function resizeCanvas() {
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initNodes();
+}
+function initNodes() {
+  if (!canvas) return;
+  nodes = [];
+  const density = Math.floor((canvas.width * canvas.height) / 16000);
+  for (let i = 0; i < density; i++) {
+    nodes.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 1.2 + 0.4, vx: Math.random() * 0.3 - 0.15, vy: Math.random() * 0.3 - 0.15 });
+  }
+}
+function drawNodes() {
+  if (!canvas || !ctx) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const isDark = htmlEl.classList.contains('dark');
+  const connectionColor = isDark ? 'rgba(87,182,255,0.06)' : 'rgba(47,111,237,0.03)';
+  const nodeColor = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(47,111,237,0.1)';
+  for (let i = 0; i < nodes.length; i++) {
+    nodes[i].x += nodes[i].vx;
+    nodes[i].y += nodes[i].vy;
+    if (nodes[i].x < 0 || nodes[i].x > canvas.width) nodes[i].vx *= -1;
+    if (nodes[i].y < 0 || nodes[i].y > canvas.height) nodes[i].vy *= -1;
+    ctx.beginPath();
+    ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
+    ctx.fillStyle = nodeColor;
+    ctx.fill();
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < 100) {
         ctx.beginPath();
-        ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
-        ctx.fillStyle = nodeColor;
-        ctx.fill();
-
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 110) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = connectionColor;
-            ctx.lineWidth = 0.55;
-            ctx.stroke();
-          }
-        }
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = connectionColor;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       }
-      requestAnimationFrame(drawNodes);
     }
+  }
+  requestAnimationFrame(drawNodes);
+}
+if (canvas) { window.addEventListener('resize', resizeCanvas); resizeCanvas(); drawNodes(); }
 
-    if (canvas) {
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      drawNodes();
+function showToast(message, iconName = 'info') {
+  const toastContainer = document.getElementById('toast-container');
+  if (!toastContainer) return;
+  const toast = document.createElement('div');
+  toast.className = 'flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl app-card shadow-xl pointer-events-auto text-[11px] font-semibold text-slate-800 dark:text-slate-200 min-w-[190px] transition-all transform translate-y-3 opacity-0';
+  toast.innerHTML = `<div class="text-accent flex-shrink-0"><i data-lucide="${iconName}" class="w-4 h-4"></i></div><div>${message}</div>`;
+  toastContainer.appendChild(toast);
+  lucide.createIcons();
+  setTimeout(() => { toast.style.transform = 'translateY(0)'; toast.style.opacity = '1'; }, 50);
+  setTimeout(() => { toast.style.transform = 'translateY(-16px)'; toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 3200);
+}
+
+const modalOverlay = document.getElementById('modal-overlay');
+const modalBox = document.getElementById('modal-box');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+if (modalCloseBtn) {
+  modalCloseBtn.onclick = () => {
+    if (!modalOverlay || !modalBox) return;
+    modalOverlay.style.opacity = '0';
+    modalBox.style.transform = 'scale(0.95)';
+    setTimeout(() => modalOverlay.classList.add('hidden'), 300);
+  };
+}
+
+document.querySelectorAll('.accordion-toggle').forEach(btn => {
+  btn.onclick = () => {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('[data-lucide="chevron-down"]');
+    if (!content) return;
+    const isOpen = !content.classList.contains('hidden');
+    document.querySelectorAll('.accordion-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.accordion-toggle [data-lucide="chevron-down"]').forEach(i => i.style.transform = 'rotate(0deg)');
+    if (!isOpen) { content.classList.remove('hidden'); if (icon) icon.style.transform = 'rotate(180deg)'; }
+  };
+});
+
+selectCalendarDate(5);
+
+const aiChatBtn = document.getElementById('ai-chat-btn');
+const aiPanel = document.getElementById('ai-panel');
+const aiCloseBtn = document.getElementById('ai-close-btn');
+const aiChatMessages = document.getElementById('ai-chat-messages');
+const aiChatForm = document.getElementById('ai-chat-form');
+const aiChatInput = document.getElementById('ai-chat-input');
+const aiBtnIcon = document.getElementById('ai-btn-icon');
+
+if (aiChatBtn && aiPanel && aiBtnIcon) {
+  aiChatBtn.onclick = () => {
+    aiPanel.classList.toggle('translate-x-full');
+    const isOpen = !aiPanel.classList.contains('translate-x-full');
+    aiBtnIcon.setAttribute('data-lucide', isOpen ? 'arrow-right' : 'bot');
+    lucide.createIcons();
+  };
+}
+if (aiCloseBtn && aiPanel && aiBtnIcon) {
+  aiCloseBtn.onclick = () => {
+    aiPanel.classList.add('translate-x-full');
+    aiBtnIcon.setAttribute('data-lucide', 'bot');
+    lucide.createIcons();
+  };
+}
+
+function appendChatMessage(sender, text) {
+  if (!aiChatMessages) return;
+  const bubble = document.createElement('div');
+  bubble.className = sender === 'user' ? 'flex items-start gap-2.5 justify-end' : 'flex items-start gap-2.5';
+  const innerBubbleHtml = sender === 'user'
+    ? `<div class="bg-accent text-white rounded-2xl p-3.5 max-w-[80%] text-xs leading-relaxed font-semibold">${text}</div>
+       <div class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 flex-shrink-0 text-[10px] font-bold">YOU</div>`
+    : `<div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-500/10 text-accent flex items-center justify-center flex-shrink-0 text-[10px] font-bold">BS</div>
+       <div class="app-card rounded-2xl p-3.5 max-w-[80%] text-xs text-slate-700 dark:text-slate-200 leading-relaxed">${text}</div>`;
+  bubble.innerHTML = innerBubbleHtml;
+  aiChatMessages.appendChild(bubble);
+  aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+}
+
+async function fetchGeminiAI(userQuery) {
+  const apiKey = "";
+  const systemPrompt = `You are the executive advisor AI of "BLUE STAR" professional agency (affiliated with Allianz Ayudhya, Thailand). Be professional, structured, and helpful, like a senior financial planner. Distinguish "BLUE STAR" (life insurance agent) from "BLUE STAR X" (financial advisor for tax, estate, retirement, savings). Point users to the calendar or contact section when relevant. Reply in Thai if the user writes Thai, English if English.`;
+  const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+  let attempt = 0;
+  const maxRetries = 5;
+  const delays = [1000, 2000, 4000, 8000, 16000];
+  async function runRequest() {
+    try {
+      const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+      const data = await response.json();
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || "Communication resolved but payload was empty.";
+    } catch (error) {
+      if (attempt < maxRetries) { const delay = delays[attempt]; attempt++; await new Promise(res => setTimeout(res, delay)); return await runRequest(); }
+      else { throw new Error("Unable to reach the assistant right now."); }
     }
+  }
+  return await runRequest();
+}
 
-    // Toast Engine
-    function showToast(message, iconName = 'info') {
-      const toastContainer = document.getElementById('toast-container');
-      if (!toastContainer) return;
-      const toast = document.createElement('div');
-      toast.className = 'flex items-center gap-3 px-4 py-3 rounded-2xl bento-card shadow-xl pointer-events-auto animate-float text-xs font-semibold text-slate-800 dark:text-slate-200 min-w-[220px] transition-all transform translate-y-4 opacity-0 border border-slate-300 dark:border-white/10';
-      toast.innerHTML = `
-        <div class="text-blue-600 dark:text-blue-400 flex-shrink-0">
-          <i data-lucide="${iconName}" class="w-4.5 h-4.5"></i>
-        </div>
-        <div>${message}</div>
-      `;
-      toastContainer.appendChild(toast);
-      lucide.createIcons();
-
-      setTimeout(() => {
-        toast.style.transform = 'translateY(0)';
-        toast.style.opacity = '1';
-      }, 50);
-
-      setTimeout(() => {
-        toast.style.transform = 'translateY(-20px)';
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 400);
-      }, 3500);
+if (aiChatForm) {
+  aiChatForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const messageText = aiChatInput ? aiChatInput.value.trim() : "";
+    if (!messageText) return;
+    appendChatMessage('user', messageText);
+    if (aiChatInput) aiChatInput.value = '';
+    const loadingBubble = document.createElement('div');
+    loadingBubble.className = 'flex items-start gap-2.5';
+    loadingBubble.id = 'ai-loading';
+    loadingBubble.innerHTML = `<div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-500/10 text-accent flex items-center justify-center flex-shrink-0 text-[10px] font-bold">BS</div>
+      <div class="app-card rounded-2xl p-3.5 text-xs text-slate-400 flex items-center gap-2">
+        <svg class="animate-spin h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+        ${activeLang === 'TH' ? 'กำลังประมวลข้อมูล...' : 'Thinking...'}
+      </div>`;
+    if (aiChatMessages) { aiChatMessages.appendChild(loadingBubble); aiChatMessages.scrollTop = aiChatMessages.scrollHeight; }
+    try {
+      const aiResponse = await fetchGeminiAI(messageText);
+      loadingBubble.remove();
+      appendChatMessage('assistant', aiResponse);
+    } catch (err) {
+      loadingBubble.remove();
+      appendChatMessage('assistant', activeLang === 'TH' ? "⚠️ ขัดข้องชั่วคราว โปรดลองใหม่อีกครั้งนะครับ" : "⚠️ Connection issue. Please try again.");
     }
+  };
+}
 
-    // Modal Manager
-    const modalOverlay = document.getElementById('modal-overlay');
-    const modalBox = document.getElementById('modal-box');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-
-    function openModal(title, desc, isSuccess = true) {
-      if (!modalOverlay || !modalBox || !modalTitle || !modalDesc) return;
-      modalTitle.textContent = title;
-      modalDesc.textContent = desc;
-      const iconContainer = document.getElementById('modal-icon-container');
-      
-      if (iconContainer) {
-        if (isSuccess) {
-          iconContainer.className = "w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400";
-          iconContainer.innerHTML = `<i data-lucide="check" class="w-8 h-8"></i>`;
-        } else {
-          iconContainer.className = "w-16 h-16 rounded-full bg-rose-100 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 flex items-center justify-center text-rose-600 dark:text-rose-400";
-          iconContainer.innerHTML = `<i data-lucide="alert-triangle" class="w-8 h-8"></i>`;
-        }
-      }
-      lucide.createIcons();
-
-      modalOverlay.classList.remove('hidden');
-      setTimeout(() => {
-        modalOverlay.style.opacity = '1';
-        modalBox.style.transform = 'scale(1)';
-      }, 50);
-    }
-
-    if (modalCloseBtn) {
-      modalCloseBtn.onclick = () => {
-        if (!modalOverlay || !modalBox) return;
-        modalOverlay.style.opacity = '0';
-        modalBox.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          modalOverlay.classList.add('hidden');
-        }, 300);
-      };
-    }
-
-    // Accordions Logic
-    document.querySelectorAll('.accordion-toggle').forEach(btn => {
-      btn.onclick = () => {
-        const content = btn.nextElementSibling;
-        const icon = btn.querySelector('[data-lucide="chevron-down"]');
-        if (!content) return;
-        const isOpen = !content.classList.contains('hidden');
-
-        document.querySelectorAll('.accordion-content').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.accordion-toggle [data-lucide="chevron-down"]').forEach(i => i.style.transform = 'rotate(0deg)');
-
-        if (!isOpen) {
-          content.classList.remove('hidden');
-          if (icon) icon.style.transform = 'rotate(180deg)';
-        }
-      };
-    });
-
-    // Share Clipboard Mechanism
-    const shareBtn = document.getElementById('share-btn');
-    if (shareBtn) {
-      shareBtn.onclick = () => {
-        const dummy = document.createElement('input');
-        document.body.appendChild(dummy);
-        dummy.value = window.location.href;
-        dummy.select();
-        document.execCommand('copy');
-        document.body.removeChild(dummy);
-        showToast(activeLang === 'TH' ? 'คัดลอกนามบัตรดิจิทัลสู่คลิปบอร์ดแล้ว!' : 'Card link successfully copied to clipboard!', 'check');
-      };
-    }
-
-    // Initialize Default Calendar Day Selection
-    selectCalendarDate(5);
-
-    // -----------------------------------------------------------------
-    // PROFESSIONAL GEMINI CO-PILOT ASSISTANT
-    // -----------------------------------------------------------------
-    const aiChatBtn = document.getElementById('ai-chat-btn');
-    const aiPanel = document.getElementById('ai-panel');
-    const aiCloseBtn = document.getElementById('ai-close-btn');
-    const aiChatMessages = document.getElementById('ai-chat-messages');
-    const aiChatForm = document.getElementById('ai-chat-form');
-    const aiChatInput = document.getElementById('ai-chat-input');
-    const aiBtnIcon = document.getElementById('ai-btn-icon');
-
-    if (aiChatBtn && aiPanel && aiBtnIcon) {
-      aiChatBtn.onclick = () => {
-        aiPanel.classList.toggle('translate-x-full');
-        const isOpen = !aiPanel.classList.contains('translate-x-full');
-        aiBtnIcon.setAttribute('data-lucide', isOpen ? 'arrow-right' : 'bot');
-        lucide.createIcons();
-      };
-    }
-
-    if (aiCloseBtn && aiPanel && aiBtnIcon) {
-      aiCloseBtn.onclick = () => {
-        aiPanel.classList.add('translate-x-full');
-        aiBtnIcon.setAttribute('data-lucide', 'bot');
-        lucide.createIcons();
-      };
-    }
-
-    function appendChatMessage(sender, text) {
-      if (!aiChatMessages) return;
-      const bubble = document.createElement('div');
-      bubble.className = sender === 'user' ? 'flex items-start gap-3 justify-end' : 'flex items-start gap-3';
-      
-      const innerBubbleHtml = sender === 'user' 
-        ? `
-          <div class="bg-gradient-to-tr from-blue-700 to-indigo-700 text-white rounded-2xl p-3.5 max-w-[85%] text-xs leading-relaxed font-semibold">
-            ${text}
-          </div>
-          <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 flex-shrink-0 text-[10px] font-bold">
-            YOU
-          </div>
-        ` 
-        : `
-          <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 flex items-center justify-center flex-shrink-0 text-[10px] font-bold">
-            BS
-          </div>
-          <div class="bg-white dark:bg-blue-500/10 border border-slate-200 dark:border-blue-500/15 rounded-2xl p-3.5 max-w-[85%] text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
-            ${text}
-          </div>
-        `;
-
-      bubble.innerHTML = innerBubbleHtml;
-      aiChatMessages.appendChild(bubble);
-      aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
-    }
-
-    async function fetchGeminiAI(userQuery) {
-      const apiKey = ""; 
-      const systemPrompt = `You are the executive advisor AI of the prestigious "BLUE STAR" professional agency (affiliated with Allianz Ayudhya, Thailand).
-      Your character guidelines are:
-      1. Deliver responses with high professionalism, elegance, structure, and helpfulness. Sound like a senior financial planner or agency leader.
-      2. Motivate candidates by referring to their inner potential ("ศักยภาพของคุณจะพาคุณไปได้ไกลแค่ไหน จนกว่าคุณจะให้โอกาสมัน").
-      3. Distinguish clearly between "BLUE STAR" Life Insurance Agent (representing Allianz Ayudhya Life Assurance to offer policies like health/life insurance) and "BLUE STAR X" Financial Advisor (consultant for personal planning on tax optimization, estate, retirement, and savings).
-      4. Point them cleanly towards the interactive calendar widget or the email contact section if they seek professional advising or want to join the team.
-      5. Strictly answer in Thai when the user initiates in Thai (TH mode) or English when the user communicates in English. Make replies clean, structured, and informative.`;
-      
-      const payload = {
-        contents: [{ parts: [{ text: userQuery }] }],
-        systemInstruction: { parts: [{ text: systemPrompt }] }
-      };
-
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-      
-      let attempt = 0;
-      const maxRetries = 5;
-      const delays = [1000, 2000, 4000, 8000, 16000];
-
-      async function runRequest() {
-        try {
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-
-          if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-          const data = await response.json();
-          return data.candidates?.[0]?.content?.parts?.[0]?.text || "Communication resolved but payload was empty.";
-        } catch (error) {
-          if (attempt < maxRetries) {
-            const delay = delays[attempt];
-            attempt++;
-            await new Promise(res => setTimeout(res, delay));
-            return await runRequest();
-          } else {
-            throw new Error("Unable to contact core. Solar flares interfering.");
-          }
-        }
-      }
-      return await runRequest();
-    }
-
-    if (aiChatForm) {
-      aiChatForm.onsubmit = async (e) => {
-        e.preventDefault();
-        const messageText = aiChatInput ? aiChatInput.value.trim() : "";
-        if (!messageText) return;
-
-        appendChatMessage('user', messageText);
-        if (aiChatInput) aiChatInput.value = '';
-
-        // Set Loading State
-        const loadingBubble = document.createElement('div');
-        loadingBubble.className = 'flex items-start gap-3';
-        loadingBubble.id = 'ai-loading';
-        loadingBubble.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 flex items-center justify-center flex-shrink-0 text-[10px] font-bold">
-            BS
-          </div>
-          <div class="bg-white dark:bg-blue-500/10 border border-slate-200 dark:border-blue-500/15 rounded-2xl p-3.5 text-xs text-slate-400 flex items-center gap-2 select-none">
-            <svg class="animate-spin h-3.5 w-3.5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-            </svg>
-            ${activeLang === 'TH' ? 'กำลังสแกนและประมวลข้อมูล...' : 'Synchronizing query matrix...'}
-          </div>
-        `;
-        if (aiChatMessages) {
-          aiChatMessages.appendChild(loadingBubble);
-          aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
-        }
-
-        try {
-          const aiResponse = await fetchGeminiAI(messageText);
-          loadingBubble.remove();
-          appendChatMessage('assistant', aiResponse);
-        } catch (err) {
-          loadingBubble.remove();
-          appendChatMessage('assistant', activeLang === 'TH' 
-            ? "⚠️ การส่งสัญญานขัดข้องชั่วคราวเนื่องจากคลื่นความถี่รบกวน โปรดลองส่งคำถามใหม่อีกครั้งนะครับ"
-            : "⚠️ Connection timed out due to environmental solar noise. Please try re-sending your advice request.");
-        }
-      };
-    }
-  </script>
+lucide.createIcons();
+</script>
 </body>
 </html>
