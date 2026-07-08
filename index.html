@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th" class="scroll-smooth dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -74,7 +74,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
     <div class="flex flex-col gap-3.5">
       <button data-variant-select="BS" class="app-card rounded-[24px] p-4 flex items-center gap-4 text-left border-2 border-transparent hover:border-accent hover:shadow-ios transition-all cursor-pointer">
         <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center p-1.5 shadow-sm border border-slate-100 dark:border-slate-700 flex-shrink-0">
-          <img src="bs logo.png" alt="Blue Star Logo" class="w-full h-full object-contain">
+          <img src="bs logo.png" alt="Blue Star Logo" class="w-full h-full object-contain" onerror="this.style.display='none'">
         </div>
         <div class="flex-1">
           <p class="font-display font-bold text-base text-slate-900 dark:text-white">BLUE STAR</p>
@@ -85,7 +85,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
       
       <button data-variant-select="BSX" class="app-card rounded-[24px] p-4 flex items-center gap-4 text-left border-2 border-transparent hover:border-sky-500 hover:shadow-ios transition-all cursor-pointer">
         <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center p-1.5 shadow-sm border border-slate-100 dark:border-slate-700 flex-shrink-0">
-          <img src="bsx logo.png" alt="Blue Star X Logo" class="w-full h-full object-contain">
+          <img src="bsx logo.png" alt="Blue Star X Logo" class="w-full h-full object-contain" onerror="this.style.display='none'">
         </div>
         <div class="flex-1">
           <p class="font-display font-bold text-base text-slate-900 dark:text-white">BLUE STAR X</p>
@@ -97,7 +97,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
 
     <!-- YouTube Video -->
     <div class="relative w-full aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl mt-4 border border-slate-200 dark:border-slate-700">
-      <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ulXaoVy1_1w?rel=0" title="Intro Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe id="video-intro" class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ulXaoVy1_1w?rel=0" title="Intro Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -109,7 +109,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
     <!-- เปลี่ยนจากตัวอักษรเป็นโลโก้ -->
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-[14px] bg-white flex items-center justify-center shadow-md p-1 border border-slate-100 dark:border-slate-700">
-        <img src="bs logo.png" id="main-header-logo" alt="Logo" class="w-full h-full object-contain">
+        <img src="bs logo.png" id="main-header-logo" alt="Logo" class="w-full h-full object-contain" onerror="this.style.display='none'">
       </div>
       <div class="leading-tight">
         <p class="font-display font-bold text-base text-slate-900 dark:text-white -mb-0.5" id="header-title">BLUE STAR</p>
@@ -123,7 +123,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
         <i data-lucide="repeat" class="w-4 h-4 text-slate-500 dark:text-slate-400"></i>
       </button>
       <button id="dark-mode-toggle" class="tap w-9 h-9 flex items-center justify-center rounded-[12px] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm text-slate-700 dark:text-slate-300">
-        <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+        <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-white"></i>
         <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-indigo-500"></i>
       </button>
       <div class="flex bg-slate-200/70 dark:bg-slate-700/70 p-1 rounded-[12px] text-[11px] font-bold">
@@ -173,10 +173,10 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
         <p class="text-sm font-bold text-slate-800 dark:text-white" data-th="แกลลอรี่กิจกรรม" data-en="Activity Gallery">แกลลอรี่กิจกรรม</p>
       </div>
       <div class="slideshow-container shadow-ios" id="slideshow" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event)">
-        <img src="5-2.png" class="slide active" alt="Slide 1">
-        <img src="5-3-1.png" class="slide" alt="Slide 2">
-        <img src="5-3-2.png" class="slide" alt="Slide 3">
-        <img src="5-4.png" class="slide" alt="Slide 4">
+        <img src="5-2.png" class="slide active" alt="Slide 1" onerror="this.style.display='none'">
+        <img src="5-3-1.png" class="slide" alt="Slide 2" onerror="this.style.display='none'">
+        <img src="5-3-2.png" class="slide" alt="Slide 3" onerror="this.style.display='none'">
+        <img src="5-4.png" class="slide" alt="Slide 4" onerror="this.style.display='none'">
         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none z-20"></div>
       </div>
       <div class="flex justify-center gap-2 mt-1" id="slide-dots">
@@ -188,33 +188,35 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
     </section>
 
     <!-- STAT ROW -->
-    <section class="grid grid-cols-1 gap-3.5">
-      <div class="tap app-card rounded-[20px] p-4 flex items-center gap-4 hover:shadow-ios cursor-default">
-        <div class="w-12 h-12 rounded-[14px] bg-blue-50 dark:bg-blue-500/10 text-accent flex items-center justify-center flex-shrink-0">
-          <i data-lucide="map" class="w-6 h-6"></i>
+    <section class="grid grid-cols-3 gap-2.5">
+      <div class="tap app-card rounded-[20px] p-3 flex flex-col items-center text-center justify-start hover:shadow-ios cursor-default">
+        <div class="w-11 h-11 rounded-[14px] bg-blue-50 dark:bg-blue-500/10 text-accent flex items-center justify-center flex-shrink-0 mb-2">
+          <i data-lucide="map" class="w-5 h-5"></i>
         </div>
-        <div>
-          <p class="font-display text-base font-bold text-slate-900 dark:text-white">12-Month Roadmap</p>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-th="ดูแผนการเรียนรู้ตลอด 12 เดือน" data-en="View your 12-month learning plan">ดูแผนการเรียนรู้ตลอด 12 เดือน</p>
-        </div>
+        <p class="font-display text-xs font-bold text-slate-900 dark:text-white leading-tight mb-1">12-Month<br>Roadmap</p>
+        <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-snug" data-th="แผนการพัฒนาตลอด 12 เดือน" data-en="12-Month learning plan">แผนการพัฒนาตลอด 12 เดือน</p>
       </div>
-      <div class="tap app-card rounded-[20px] p-4 flex items-center gap-4 hover:shadow-ios cursor-default">
-        <div class="w-12 h-12 rounded-[14px] bg-sky-50 dark:bg-sky-500/10 text-sky-500 flex items-center justify-center flex-shrink-0">
-          <i data-lucide="network" class="w-6 h-6"></i>
+      <div class="tap app-card rounded-[20px] p-3 flex flex-col items-center text-center justify-start hover:shadow-ios cursor-default">
+        <div class="w-11 h-11 rounded-[14px] bg-sky-50 dark:bg-sky-500/10 text-sky-500 flex items-center justify-center flex-shrink-0 mb-2">
+          <i data-lucide="network" class="w-5 h-5"></i>
         </div>
-        <div>
-          <p class="font-display text-base font-bold text-slate-900 dark:text-white">Smart Support System</p>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-th="ค้นพบสื่อและระบบที่พร้อมสนับสนุนคุณ" data-en="Discover tools and systems to support you">ค้นพบสื่อและระบบที่พร้อมสนับสนุนคุณ</p>
-        </div>
+        <p class="font-display text-xs font-bold text-slate-900 dark:text-white leading-tight mb-1">Smart Support<br>System</p>
+        <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-snug" data-th="ระบบสนับสนุนความสำเร็จ" data-en="Smart Support System">ระบบสนับสนุนความสำเร็จ</p>
       </div>
-      <div class="tap app-card rounded-[20px] p-4 flex items-center gap-4 hover:shadow-ios cursor-default">
-        <div class="w-12 h-12 rounded-[14px] bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 flex items-center justify-center flex-shrink-0">
-          <i data-lucide="compass" class="w-6 h-6"></i>
+      <div class="tap app-card rounded-[20px] p-3 flex flex-col items-center text-center justify-start hover:shadow-ios cursor-default">
+        <div class="w-11 h-11 rounded-[14px] bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 flex items-center justify-center flex-shrink-0 mb-2">
+          <i data-lucide="compass" class="w-5 h-5"></i>
         </div>
-        <div>
-          <p class="font-display text-base font-bold text-slate-900 dark:text-white">Design Your Future</p>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-th="เลือกเส้นทางอาชีพ สู่การเป็นเจ้าของธุรกิจ" data-en="Choose your path to business ownership">เลือกเส้นทางอาชีพ สู่การเป็นเจ้าของธุรกิจ</p>
-        </div>
+        <p class="font-display text-xs font-bold text-slate-900 dark:text-white leading-tight mb-1">Design Your<br>Future</p>
+        <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-snug" data-th="ออกแบบเส้นทางความสำเร็จของคุณ" data-en="Design Your Future">ออกแบบเส้นทางความสำเร็จของคุณ</p>
+      </div>
+    </section>
+
+    <!-- PREVIEW VIDEO -->
+    <section class="flex flex-col gap-3 pt-2">
+      <p class="text-sm font-bold text-slate-900 dark:text-white px-1" data-th="วิดีโอแนะนำโครงการ" data-en="Project Preview">วิดีโอแนะนำโครงการ</p>
+      <div class="relative w-full aspect-video rounded-[24px] overflow-hidden bg-black shadow-ios border border-slate-100 dark:border-slate-700">
+        <iframe id="video-preview" class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ulXaoVy1_1w?rel=0" title="Preview Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </section>
 
@@ -225,43 +227,43 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
       <div class="glass-panel p-4 rounded-[28px] shadow-lg">
         <div class="grid grid-cols-3 gap-y-5 gap-x-3">
           
-          <a href="https://drive.google.com/drive/folders/1Y0sqnxDEh-LfrbNHI55M7gdUhAggfXKk?usp=drive_link" target="_blank" class="tap flex flex-col items-center gap-2 group">
+          <a href="https://drive.google.com/drive/folders/1Y0sqnxDEh-LfrbNHI55M7gdUhAggfXKk?usp=drive_link" target="_blank" id="link-vid" class="tap flex flex-col items-center gap-2 group">
             <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-accent to-accent-dark text-white flex items-center justify-center shadow-md group-hover:shadow-ios-hover border border-white/20">
               <i data-lucide="video" class="w-6 h-6"></i>
             </div>
             <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight h-8 flex items-center justify-center w-full" data-th="วิดีโอ<br>โครงการ" data-en="Project<br>Video">วิดีโอ<br>โครงการ</span>
           </a>
           
-          <a href="https://drive.google.com/drive/folders/1iRES1lv7Znovuu3IcVxkGZSrm5Zi4hpG?usp=drive_link" target="_blank" class="tap flex flex-col items-center gap-2 group">
+          <a href="https://drive.google.com/drive/folders/1iRES1lv7Znovuu3IcVxkGZSrm5Zi4hpG?usp=drive_link" target="_blank" id="link-pdf" class="tap flex flex-col items-center gap-2 group">
             <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center shadow-md group-hover:shadow-ios-hover border border-white/20">
               <i data-lucide="file-text" class="w-6 h-6"></i>
             </div>
             <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight h-8 flex items-center justify-center w-full" data-th="ข้อมูลโครงการ<br>PDF" data-en="Project Info<br>PDF">ข้อมูลโครงการ<br>PDF</span>
           </a>
           
-          <a href="https://drive.google.com/drive/folders/1sGL6WGIXM8Pq8q11dtjStNJ2XmwbCX6v?usp=drive_link" target="_blank" class="tap flex flex-col items-center gap-2 group">
+          <a href="https://drive.google.com/drive/folders/1sGL6WGIXM8Pq8q11dtjStNJ2XmwbCX6v?usp=drive_link" target="_blank" id="link-app" class="tap flex flex-col items-center gap-2 group">
             <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center shadow-md group-hover:shadow-ios-hover border border-white/20">
               <i data-lucide="user-plus" class="w-6 h-6"></i>
             </div>
             <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight h-8 flex items-center justify-center w-full" data-th="เอกสารสมัคร/<br>ลงทะเบียน" data-en="Application<br>Form">เอกสารสมัคร/<br>ลงทะเบียน</span>
           </a>
           
-          <a href="https://drive.google.com/drive/folders/1RsgC9FHPJT0wZtzsxLYsc9WnJgBszL0F?usp=drive_link" target="_blank" class="tap flex flex-col items-center gap-2 group">
-            <div class="w-14 h-14 rounded-[20px] bg-white text-accent flex items-center justify-center shadow-sm border border-slate-100 group-hover:shadow-ios-hover group-hover:text-accent-dark">
+          <a href="https://drive.google.com/drive/folders/1RsgC9FHPJT0wZtzsxLYsc9WnJgBszL0F?usp=drive_link" target="_blank" id="link-dl" class="tap flex flex-col items-center gap-2 group">
+            <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-teal-400 to-teal-600 text-white flex items-center justify-center shadow-md group-hover:shadow-ios-hover border border-white/20">
               <i data-lucide="download-cloud" class="w-6 h-6"></i>
             </div>
             <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight h-8 flex items-center justify-center w-full" data-th="Download<br>แหล่งรวมข้อมูล" data-en="Download<br>Assets">Download<br>แหล่งรวมข้อมูล</span>
           </a>
           
           <a href="https://www.allianz.co.th/th_TH/bluestar.html" target="_blank" class="tap flex flex-col items-center gap-2 group">
-            <div class="w-14 h-14 rounded-[20px] bg-white text-sky-500 flex items-center justify-center shadow-sm border border-slate-100 group-hover:shadow-ios-hover group-hover:text-sky-600">
+            <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center shadow-md group-hover:shadow-ios-hover border border-white/20">
               <i data-lucide="globe" class="w-6 h-6"></i>
             </div>
             <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight h-8 flex items-center justify-center w-full">Website<br>&nbsp;</span>
           </a>
           
           <a href="https://zenflip.io/view/bluestaracademy/bluestar2026" target="_blank" class="tap flex flex-col items-center gap-2 group">
-            <div class="w-14 h-14 rounded-[20px] bg-white text-indigo-500 flex items-center justify-center shadow-sm border border-slate-100 group-hover:shadow-ios-hover group-hover:text-indigo-600">
+            <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-violet-500 to-violet-700 text-white flex items-center justify-center shadow-md group-hover:shadow-ios-hover border border-white/20">
               <i data-lucide="book-open" class="w-6 h-6"></i>
             </div>
             <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 text-center leading-tight h-8 flex items-center justify-center w-full">Flip Book<br>&nbsp;</span>
@@ -273,11 +275,11 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
 
     <!-- CAREER PATHS -->
     <section class="flex flex-col gap-3 pt-2">
-      <p class="text-sm font-bold text-slate-900 dark:text-white px-1" data-th="เส้นทางอาชีพ" data-en="Career Paths">เส้นทางอาชีพ</p>
+      <p class="text-sm font-bold text-slate-900 dark:text-white px-1" data-th="BLUE STAR ACADEMY" data-en="BLUE STAR ACADEMY">BLUE STAR ACADEMY</p>
 
-      <div class="program-card tap app-card rounded-[24px] p-5 flex items-start gap-4 border-2 cursor-pointer transition-all" data-variant="BS" onclick="applyVariant('BS')">
+      <div class="program-card tap app-card rounded-[24px] p-5 flex items-start gap-4 border-2 cursor-pointer transition-all duration-300" data-variant="BS" onclick="applyVariant('BS')">
         <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-1 shadow-sm border border-slate-100 dark:border-slate-700 flex-shrink-0">
-          <img src="bs logo.png" alt="icon" class="w-full h-full object-contain">
+          <img src="bs logo.png" alt="icon" class="w-full h-full object-contain" onerror="this.style.display='none'">
         </div>
         <div class="flex-1">
           <div class="flex items-center gap-2">
@@ -288,9 +290,9 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
         </div>
       </div>
 
-      <div class="program-card tap app-card rounded-[24px] p-5 flex items-start gap-4 border-2 cursor-pointer transition-all" data-variant="BSX" onclick="applyVariant('BSX')">
+      <div class="program-card tap app-card rounded-[24px] p-5 flex items-start gap-4 border-2 cursor-pointer transition-all duration-300" data-variant="BSX" onclick="applyVariant('BSX')">
         <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-1 shadow-sm border border-slate-100 dark:border-slate-700 flex-shrink-0">
-          <img src="bsx logo.png" alt="icon" class="w-full h-full object-contain">
+          <img src="bsx logo.png" alt="icon" class="w-full h-full object-contain" onerror="this.style.display='none'">
         </div>
         <div class="flex-1">
           <div class="flex items-center gap-2">
@@ -479,7 +481,14 @@ const brandConfig = {
     locationEn: 'Thailand',
     iconSrc: 'bs logo.png',
     email: 'BlueStar@allianz.co.th',
-    bgGradient: 'linear-gradient(145deg, #0A1B4A 0%, #17367D 100%)'
+    bgGradient: 'linear-gradient(145deg, #0A1B4A 0%, #17367D 100%)',
+    videoUrl: 'https://www.youtube.com/embed/ulXaoVy1_1w?rel=0',
+    links: {
+      vid: 'https://drive.google.com/drive/folders/1Y0sqnxDEh-LfrbNHI55M7gdUhAggfXKk?usp=drive_link',
+      pdf: 'https://drive.google.com/drive/folders/1iRES1lv7Znovuu3IcVxkGZSrm5Zi4hpG?usp=drive_link',
+      app: 'https://drive.google.com/drive/folders/1sGL6WGIXM8Pq8q11dtjStNJ2XmwbCX6v?usp=drive_link',
+      dl: 'https://drive.google.com/drive/folders/1RsgC9FHPJT0wZtzsxLYsc9WnJgBszL0F?usp=drive_link'
+    }
   },
   BSX: {
     label: 'BLUE STAR X',
@@ -487,13 +496,20 @@ const brandConfig = {
     locationEn: 'Bangkok',
     iconSrc: 'bsx logo.png',
     email: 'BlueStarx@allianz.co.th',
-    bgGradient: 'linear-gradient(145deg, #0f172a 0%, #082f49 100%)'
+    bgGradient: 'linear-gradient(145deg, #0f172a 0%, #082f49 100%)',
+    videoUrl: 'https://www.youtube.com/embed/DF4xnCTQUxs?rel=0',
+    links: {
+      vid: 'https://drive.google.com/drive/folders/1tuDZASy5_LD171WfXXHhWMvTzZKnQ6uY?usp=drive_link',
+      pdf: 'https://drive.google.com/drive/folders/1tuDZASy5_LD171WfXXHhWMvTzZKnQ6uY?usp=drive_link',
+      app: 'https://drive.google.com/drive/folders/1tuDZASy5_LD171WfXXHhWMvTzZKnQ6uY?usp=drive_link',
+      dl: 'https://drive.google.com/drive/folders/1tuDZASy5_LD171WfXXHhWMvTzZKnQ6uY?usp=drive_link'
+    }
   }
 };
 
 let activeVariant = 'BS';
 
-// Dark mode logic
+// Dark mode logic (Toggle still works if the user wants to switch back to light)
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 if (darkModeToggle) {
   darkModeToggle.addEventListener('click', () => {
@@ -550,6 +566,17 @@ function applyVariant(variant) {
   document.getElementById('brand-location').textContent = activeLang === 'TH' ? cfg.location : cfg.locationEn;
   document.getElementById('id-card-bg').style.background = cfg.bgGradient;
   document.getElementById('faq-variant-label').textContent = cfg.label;
+
+  // Update Videos and Links dynamically
+  const introVideo = document.getElementById('video-intro');
+  if (introVideo) introVideo.src = cfg.videoUrl;
+  const previewVideo = document.getElementById('video-preview');
+  if (previewVideo) previewVideo.src = cfg.videoUrl;
+  
+  document.getElementById('link-vid').href = cfg.links.vid;
+  document.getElementById('link-pdf').href = cfg.links.pdf;
+  document.getElementById('link-app').href = cfg.links.app;
+  document.getElementById('link-dl').href = cfg.links.dl;
   
   // Email Update
   const btn = document.getElementById('main-contact-btn');
@@ -564,12 +591,12 @@ function applyVariant(variant) {
   document.querySelectorAll('.program-card').forEach(card => {
     const badge = card.querySelector('.selected-badge');
     if (card.getAttribute('data-variant') === variant) {
-      card.classList.add('border-sky-400', 'shadow-ios');
-      card.classList.remove('border-slate-100', 'dark:border-slate-700');
+      card.classList.add('border-sky-400', 'shadow-ios', 'opacity-100');
+      card.classList.remove('border-slate-100', 'dark:border-slate-700', 'shadow-sm', 'opacity-50', 'scale-[0.98]', 'grayscale-[30%]');
       badge.classList.remove('hidden');
     } else {
-      card.classList.remove('border-sky-400', 'shadow-ios');
-      card.classList.add('border-slate-100', 'dark:border-slate-700');
+      card.classList.remove('border-sky-400', 'shadow-ios', 'opacity-100');
+      card.classList.add('border-slate-100', 'dark:border-slate-700', 'shadow-sm', 'opacity-50', 'scale-[0.98]', 'grayscale-[30%]');
       badge.classList.add('hidden');
     }
   });
