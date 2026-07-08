@@ -168,14 +168,11 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
 
     <!-- IMAGE SLIDESHOW -->
     <section class="flex flex-col gap-3">
-      <div class="flex items-center justify-between px-1">
-        <p class="text-sm font-bold text-slate-800 dark:text-white" data-th="แกลลอรี่กิจกรรม" data-en="Activity Gallery">แกลลอรี่กิจกรรม</p>
-      </div>
       <div class="slideshow-container shadow-ios" id="slideshow" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event)">
-        <img src="5-2.png" class="slide active" alt="Slide 1" onerror="this.style.display='none'">
-        <img src="5-3-1.png" class="slide" alt="Slide 2" onerror="this.style.display='none'">
-        <img src="5-3-2.png" class="slide" alt="Slide 3" onerror="this.style.display='none'">
-        <img src="5-4.png" class="slide" alt="Slide 4" onerror="this.style.display='none'">
+        <img src="1.png" id="slide-img-0" class="slide active" alt="Slide 1" onerror="this.style.display='none'">
+        <img src="2.png" id="slide-img-1" class="slide" alt="Slide 2" onerror="this.style.display='none'">
+        <img src="3.png" id="slide-img-2" class="slide" alt="Slide 3" onerror="this.style.display='none'">
+        <img src="4.png" id="slide-img-3" class="slide" alt="Slide 4" onerror="this.style.display='none'">
         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none z-20"></div>
       </div>
       <div class="flex justify-center gap-2 mt-1" id="slide-dots">
@@ -490,6 +487,7 @@ const brandConfig = {
     iconSrc: 'bs logo.png',
     email: 'BlueStar@allianz.co.th',
     bgGradient: 'linear-gradient(145deg, #0A1B4A 0%, #17367D 100%)',
+    images: ['1.png', '2.png', '3.png', '4.png'],
     videos: [
       { title: 'วิดีโอแนะนำโครงการ', url: 'https://www.youtube.com/embed/O3ciRomeltw?rel=0' }
     ],
@@ -499,7 +497,7 @@ const brandConfig = {
       app: 'https://drive.google.com/drive/folders/1sGL6WGIXM8Pq8q11dtjStNJ2XmwbCX6v?usp=drive_link',
       dl: 'https://drive.google.com/drive/folders/1RsgC9FHPJT0wZtzsxLYsc9WnJgBszL0F?usp=drive_link',
       web: 'https://www.allianz.co.th/th_TH/bluestar.html',
-      flip: 'https://zenflip.io/view/bluestaracademy/bluestar2026'
+      flip: 'https://zenflip.io/view/bluestaracademy/bluestar2026-mrcic2go'
     }
   },
   BSX: {
@@ -511,6 +509,7 @@ const brandConfig = {
     iconSrc: 'bsx logo.png',
     email: 'BlueStarx@allianz.co.th',
     bgGradient: 'linear-gradient(145deg, #0f172a 0%, #082f49 100%)',
+    images: ['5.png', '6.png', '7.png', '8.png'],
     videos: [
       { title: 'Blue Star X ที่ปรึกษาการเงิน และประกันชีวิต โดย อลิอันซ์ อยุธยา', url: 'https://www.youtube.com/embed/DF4xnCTQUxs?rel=0' },
       { title: 'วิดีโอแนะนำโครงการ', url: 'https://www.youtube.com/embed/RUBrmI8XEyI?rel=0' }
@@ -579,6 +578,17 @@ function applyVariant(variant) {
   // Header Logo Update
   document.getElementById('main-header-logo').src = cfg.iconSrc;
   
+  // Update Slideshow Images
+  if (cfg.images) {
+    for (let i = 0; i < 4; i++) {
+      let imgEl = document.getElementById('slide-img-' + i);
+      if (imgEl) {
+        imgEl.src = cfg.images[i];
+        imgEl.style.display = ''; // Reset display in case it was hidden by onerror
+      }
+    }
+  }
+
   // Cards Update
   document.getElementById('header-title').textContent = cfg.label;
   document.getElementById('brand-card-title').textContent = cfg.label;
