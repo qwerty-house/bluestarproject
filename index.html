@@ -166,6 +166,23 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; -webkit-ove
       </div>
     </section>
 
+    <!-- IMAGE SLIDESHOW -->
+    <section class="flex flex-col gap-3">
+      <div class="slideshow-container shadow-ios" id="slideshow" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event)">
+        <img src="" class="slide active" alt="Slide 1" onerror="this.style.display='none'" onload="this.style.display='block'">
+        <img src="" class="slide" alt="Slide 2" onerror="this.style.display='none'" onload="this.style.display='block'">
+        <img src="" class="slide" alt="Slide 3" onerror="this.style.display='none'" onload="this.style.display='block'">
+        <img src="" class="slide" alt="Slide 4" onerror="this.style.display='none'" onload="this.style.display='block'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none z-20"></div>
+      </div>
+      <div class="flex justify-center gap-2 mt-1" id="slide-dots">
+        <button class="slide-dot active w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600" onclick="goToSlide(0)"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600" onclick="goToSlide(1)"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600" onclick="goToSlide(2)"></button>
+        <button class="slide-dot w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600" onclick="goToSlide(3)"></button>
+      </div>
+    </section>
+
     <!-- STAT ROW (แนวนอน 3 คอลัมน์) -->
     <section class="grid grid-cols-3 gap-2.5 mt-2">
       <div class="app-card rounded-[20px] p-3 flex flex-col items-center text-center gap-1.5 shadow-sm border border-slate-100 dark:border-slate-700">
@@ -592,6 +609,14 @@ function applyVariant(variant) {
     });
   }
 
+  // Update Slideshow Images
+  const slideEls = document.querySelectorAll('.slide');
+  if (cfg.images && slideEls.length === cfg.images.length) {
+    slideEls.forEach((el, index) => {
+      el.src = cfg.images[index];
+    });
+  }
+
   // Update Media Hub Links
   document.getElementById('link-vid').href = cfg.links.vid;
   document.getElementById('link-pdf').href = cfg.links.pdf;
@@ -654,6 +679,69 @@ document.querySelectorAll('.accordion-toggle').forEach(btn => {
     }
   };
 });
+
+// SLIDESHOW LOGIC
+let currentSlide = 0;
+let slideInterval;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slide-dot');
+  if (!slides.length) return;
+  
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  currentSlide = index;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  const slides = document.querySelectorAll('.slide');
+  if (!slides.length) return;
+  let next = (currentSlide + 1) % slides.length;
+  showSlide(next);
+}
+
+function prevSlide() {
+  const slides = document.querySelectorAll('.slide');
+  if (!slides.length) return;
+  let prev = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(prev);
+}
+
+function goToSlide(index) {
+  showSlide(index);
+  resetInterval();
+}
+
+function resetInterval() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(nextSlide, 3500);
+}
+
+// SWIPE LOGIC
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleTouchStart(e) {
+  touchStartX = e.changedTouches[0].screenX;
+  clearInterval(slideInterval);
+}
+
+function handleTouchEnd(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+  resetInterval();
+}
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  if (touchEndX < touchStartX - swipeThreshold) nextSlide();
+  if (touchEndX > touchStartX + swipeThreshold) prevSlide();
+}
+
+resetInterval();
 
 // Active Tab Scroll logic
 const observer = new IntersectionObserver((entries) => {
